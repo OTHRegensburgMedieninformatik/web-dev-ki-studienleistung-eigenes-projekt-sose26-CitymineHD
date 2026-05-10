@@ -1,0 +1,169 @@
+{{> menu }}
+<body>
+    <div class="bg-psc-yellow centered_text">
+        <h1>Dein Werdegang zum Mitglied</h1>
+    </div>
+    <div class="feature-container-centered">
+            <div class="feature-item-centered col-3">
+                <div class="card" style="height: 100%;">
+                    <div class="card-body"  style="display: flex; flex-direction: column; flex-grow: 1;">
+                        <h5 class="card-title">Sportart aussuchen</h5>
+                        <p class="card-text" style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">Suche dir deine Lieblingssportart aus!</p>
+                        <a href="#" class="btn btn-psc-blue">Sportarten durchsuchen</a>
+                    </div>
+                </div>      
+            </div>
+            <div class="feature-item-centered col-3">
+                <div class="card" style="height: 100%;">
+                    <div class="card-body" style="display: flex; flex-direction: column; flex-grow: 1;">
+                        <h5 class="card-title">Probetraining vereinbaren</h5>
+                        <p class="card-text" style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">Wir bieten immer ein kostenloses Probetraining an, damit du dir das Training, unsere Übungsleiter und den Verein anschauen kannst.</p>
+                        <a href="/verein/anprechpartner" class="btn btn-psc-blue">Probetraining vereinbaren</a>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-item-centered col-3">
+                <div class="card" style="height: 100%;">
+                    <div class="card-body" style="display: flex; flex-direction: column; flex-grow: 1;">
+                        <h5 class="card-title">Mitgliedschaft abschließen</h5>
+                        <p class="card-text" style="display: flex; justify-content: center; align-items: center;flex-grow: 1;">Werde Teil unserer Gemeinschaft und genieße alle Vorteile als Mitglied.</p>
+                        <a href="#" class="btn btn-psc-blue">Mitgliedschaft abschließen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="feature-container-centered" style="padding: 10px;">
+            <a href="#" class="btn btn-psc-yellow" data-bs-toggle="modal" data-bs-target="#membershipModal">Online-Antrag</a>
+            <p><em>oder lieber offline</em></p>
+            <a href="/src/membership/antrag.pdf" class="btn btn-psc-yellow">Antragsdokument</a>
+        </div>
+        <div class="modal fade" id="membershipModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+            <div class="modal-header d-flex justify-content-center">
+                <h5 class="modal-title">Online-Mitgliedsantrag</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+            </div>
+            <div class="modal-body text-center d-flex flex-column align-items-center modal-scrollable">
+                <form action="/membership/apply" method="post">
+                    <div class="row">
+                        <h4 class="p-2 mb-4 bg-psc-yellow">Persönliche Daten</h4>
+                        <div class="col">                
+                            <label for="firstName">Vorname:</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Vorname">
+                        </div>
+                        <div class="col">
+                            <label for="lastName">Nachname:</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Nachname">
+                        </div>
+                        <div class="col">
+                            <label for="birthDate">Geburtstag:</label>
+                            <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="Geburtstag">
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="p-2 mb-4 bg-psc-yellow">Adresse</h4>
+                        <div class="col">
+                            <label for="address">Anschrift:</label>
+                            <input type="text" class="form-control" id="address" name="address" placeholder="Anschrift">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">                
+                            <label for="postCode">Postleitzahl:</label>
+                            <input type="text" class="form-control" id="postCode" name="postCode" placeholder="Postleitzahl">
+                        </div>
+                        <div class="col">
+                            <label for="city">Wohnort:</label>
+                            <input type="text" class="form-control" id="city" name="city" placeholder="Wohnort">
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="p-2 mb-4 bg-psc-yellow">Kontaktinformationen</h4>
+                        <div class="col">
+                            <label for="phone">Telefon:</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telefon">
+                        </div>
+                        <div class="col">
+                            <label for="mobile">Handy:</label>
+                            <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Handy">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="email">E-Mail:</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail">
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="p-2 mb-4 bg-psc-yellow">Abteilung</h4>
+                        <div class="col">
+                            {{!-- <select class="form-select" id="department" name="department">
+                                <option value="">Abteilung auswählen</option>
+                                <option value="fussball">Breitensport</option>
+                                <option value="handball">Fußball</option>
+                                <option value="volleyball">Stockschützen</option>
+                                <option value="schwimmen">Tennis</option>
+                                <option value="leichtathletik">JFG D-A</option>
+                            </select> --}}
+                            <label for="breitensport">Breitensport</label>
+                            <input class="m-2" type="checkbox" id="breitensport" name="breitensport">
+                            <label for="soccer">Fußball</label>
+                            <input class="m-2" type="checkbox" id="soccer" name="soccer">
+                            <label for="stock">Stockschützen</label>
+                            <input class="m-2" type="checkbox" id="stock" name="stock">
+                            <label for="tennis">Tennis</label>
+                            <input class="m-2" type="checkbox" id="tennis" name="tennis">
+                            <label for="jfg">JFG D-A</label>
+                            <input class="m-2" type="checkbox" id="jfg" name="jfg">
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <h4 class="p-2 mb-4 bg-psc-yellow">Zahlungsinformationen</h4>
+                        <p><strong>Unsere Gläubiger-ID:</strong> DE64PSC00000397196</p>
+                        <p><strong>Ihre Mandatsreferenz:</strong> Wird Ihnen mit der Aufnahmebestätigung mitgeteilt!</p>
+                        <p>Ich/ Wir ermächtige(n) den Peisinger Sportclub e.V., Zahlungen von meinem/ unseren Konto mittels Lastschrift einzuziehen. Zugleich weise(n) ich/ wir mein/ unser Kreditinstitut an, die vom Peisinger Sportclub e.V. auf mein/unser Konto gezogenen Lastschriften einzulösen.</p>
+                        <div class="col">
+                            <p>Kontoinhaber:</p>
+                        </div>
+                        <div class="col">
+                            <input type="input" class="form-control" id="accountOwnerFirstName" name="accountOwnerFirstName" placeholder="Nachname">
+                        </div>
+                        <div class="col">
+                            <input type="input" class="form-control" id="accountOwnerLastName" name="accountOwnerLastName" placeholder="Vorname">
+                        </div>
+                        <div class="col">
+                            <input type="input" class="form-control" id="accountOwnerAddress" name="accountOwnerAddress" placeholder="Adresse">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="accountIBAN">IBAN</label>
+                            <input type="input" class="form-control" id="accountIBAN" name="accountIBAN" placeholder="IBAN">
+                        </div>
+                        <div class="col">
+                            <label for="accountBIC">BIC</label>
+                            <input type="input" class="form-control" id="accountBIC" name="accountBIC" placeholder="BIC">
+                        </div>
+                        <div class="col">
+                            <label for="accountBank">Kreditinstitut</label>
+                            <input type="input" class="form-control" id="accountBank" name="accountBank" placeholder="Kreditinstitut">
+                        </div>
+                    </div>
+                    <div class="row mt-5 mb-5">
+                        <h4 class="p-2 mb-4 bg-psc-yellow">Datenschutz und Newsletter</h4>
+                        <label for="privacy1">Ich habe die Datenschutzerklärung zur Kenntnis genommen</label>
+                        <input type="checkbox" id="privacy1" name="privacy1">
+                        <label for="privacy2">Ich stimme zu den Newsletter zu empfangen</label>
+                        <input type="checkbox" id="privacy2" name="privacy2">
+                    </div>
+                    <button type="submit" class="btn btn-psc-yellow">Senden und Mitglied werden!</button>
+                </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,152 @@
+{{> menu }}
+<body>
+    <h1>Profile2</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel">
+                 <div class="panel d-flex flex-column align-items-center bg-psc-yellow" style="border-radius: 10px; padding: 20px">
+                    <div class="circle-centered" style="background-image: url(/psc_logo.png); border: 2px solid var(--psc-blue)"></div>
+                    <h1>{{userProfile.firstName}} {{userProfile.lastName}}</h1>
+                </div>
+                <div class="d-flex flex-column">
+                    <ul class="nav nav-pills flex-column text-center bg-light" style="display: block; border: 1px solid lightgray; width: 100%; padding: 5px; border-radius: 10px;">
+                        <li class="active"><a style="color: black; text-decoration: none;" href="/profile"><i class="bi bi-person"></i> Profile</a></li>
+                        <li style="border-top: 1px solid lightgray;"><a style="color: black; text-decoration: none;" href="/profile/edit"><i class="bi bi-pencil-square"></i> Profil bearbeiten</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="panel"> 
+                <div class="bg-psc-yellow text-center" style="border-radius: 10px; padding: 20px;">
+                    <h2>Deine Mitgliedschaft</h2>
+                </div>
+                <div class="panel-body text-center bg-light" style="border-radius: 10px; padding: 20px;">
+                    <form action="/profile/edit/{{userProfile.id}}" method="POST" >
+                        <div class="row d-flex">
+                            <div class="col-md-6">
+                                <table style="width: 100%; table-layout: fixed;">
+                                    <tr>
+                                        <td style="width: 120px; vertical-align: top;"><strong>Vorname:</strong></td>
+                                        <td><input type="text" id="firstName" name="firstName" value="{{userProfile.firstName}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Geburtstag:</strong></td>
+                                        <td><input type="text" id="birthday" name="birthday" value="{{userProfile.birthday}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Postleitzahl:</strong></td>
+                                        <td><input type="text" id="postcode" name="postcode" value="{{userProfile.postcode}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>E-Mail:</strong></td>
+                                        <td><input type="email" id="mail" name="mail" value="{{userProfile.mail}}"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <table style="width: 100%; table-layout: fixed;">
+                                    <tr>
+                                        <td style="width: 120px;"><strong>Nachname:</strong></td>
+                                        <td><input type="text" id="lastName" name="lastName" value="{{userProfile.lastName}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Adresse:</strong></td>
+                                        <td><input type="text" id="address" name="address" value="{{userProfile.address}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Ort:</strong></td>
+                                        <td><input type="text" id="city" name="city" value="{{userProfile.city}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Telefon:</strong></td>
+                                        <td><input type="text" id="phone" name="phone" value="{{userProfile.phone}}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Handy:</strong></td>
+                                        <td><input type="text" id="handy" name="handy" value="{{userProfile.handy}}"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-psc-blue" style="margin-top: 20px;">Änderungen speichern</button>
+                    </form>
+                    <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="padding: 10px; text-align: center;">Mitgliedsstatus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center;">{{{applyStatus}}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {{#if isAdmin}}
+            <div class="panel" style="margin-top: 20px;"> 
+                <div class="bg-psc-yellow text-center" style="border-radius: 10px; padding: 20px;">
+                    <h2>Mitgliederverwaltung</h2>
+                </div>
+                <div class="panel-body text-center bg-light" style="border-radius: 10px; padding: 20px;">
+                    <div class="row d-flex">
+                        <div class="col-md-6">
+                            <h5 style="text-decoration: underline;">Neue Anträge</h5>
+                             <table style="width: 100%; table-layout: fixed;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: 10px; text-align: center;">Vorname</th>
+                                        <th style="padding: 10px; text-align: center;">Nachname</th>
+                                        <th style="padding: 10px; text-align: center;">Aktion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each applys}}
+                                    <tr>
+                                        <td style="text-align: center;">{{firstname}}</td>
+                                        <td style="text-align: center;">{{lastname}}</td>
+                                        <td style="text-align: center;"><a class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modal{{user_id}}">Bearbeiten</a></td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                             </table>
+                        </div>
+                        {{#each applys}}
+                        {{> pop_up_edit_member modalId=user_id firstname=firstname lastname=lastname birthday=birthday postcode=postcode mail=mail address=address city=city phone=phone handy=handy applyStatus=status}}
+                        {{/each}}
+                         <div class="col-md-6">
+                            <h5 style="text-decoration: underline;">Mitglieder</h5>
+                            <table style="width: 100%; table-layout: fixed;">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: 10px; text-align: center;">Vorname</th>
+                                        <th style="padding: 10px; text-align: center;">Nachname</th>
+                                        <th style="padding: 10px; text-align: center;">Aktion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each allMembers}}
+                                    <tr>
+                                        <td style="text-align: center;">{{firstname}}</td>
+                                        <td style="text-align: center;">{{lastname}}</td>
+                                        <td style="text-align: center;"><a class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modal{{user_id}}">Bearbeiten</a></td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                             </table>
+                        </div>
+                        {{#each allMembers}}
+                        {{> pop_up_edit_member modalId=user_id firstname=firstname lastname=lastname birthday=birthday postcode=postcode mail=mail address=address city=city phone=phone handy=handy applyStatus=status}}
+                        {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</body>

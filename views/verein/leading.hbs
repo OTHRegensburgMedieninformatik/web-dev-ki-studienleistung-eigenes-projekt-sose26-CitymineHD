@@ -1,0 +1,26 @@
+{{> menu }}
+<body>
+    <div class="bg-psc-yellow centered_text">
+        <h1>Vorstandschaft</h1>
+    </div>
+
+    <div class="feature-container-centered">
+       {{#each firstRow}}
+            <div class="feature-item-centered">
+                <div class="circle-centered", style="background-image: url({{src_img}});"></div>
+                <h2>{{name}}</h2>
+                <p>{{position}}</p>
+            </div>
+        {{/each}}
+    </div>
+    <div class="feature-container-centered">
+        {{#each secondRow}}
+            <div class="feature-item-centered">
+                <div class="circle-centered", style="background-image: url({{src_img}});"></div>
+                <h2>{{name}}</h2>
+                <p>{{position}}</p>
+            </div>
+        {{/each}}
+        </div>
+    </div>
+</body>

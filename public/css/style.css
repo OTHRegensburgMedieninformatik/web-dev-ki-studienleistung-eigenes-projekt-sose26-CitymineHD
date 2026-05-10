@@ -1,0 +1,169 @@
+:root {
+    --psc-yellow: #ffcc00;
+    --psc-blue: #007bff;
+    --psc-yellow-hover: #e6b800;
+    --psc-blue-hover: #0069d9;
+    --psc-black: #000000;
+}
+
+html, body {
+    height: 100%; /*Damit Footer immer am unteren Rand bleibt, auch wenn der Inhalt nicht die volle Höhe einnimmt*/
+    margin: 0;
+}
+
+body {
+    display: flex; /*Damit Footer immer am unteren Rand bleibt, auch wenn der Inhalt nicht die volle Höhe einnimmt*/
+    flex-direction: column;
+}
+
+.content {
+    flex: 1 0 auto; /*Damit Footer immer am unteren Rand bleibt, auch wenn der Inhalt nicht die volle Höhe einnimmt*/
+}
+
+.btn-psc-yellow {
+    background-color: var(--psc-yellow) !important;
+    color: var(--psc-black) !important;
+    border: none;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-psc-yellow:hover {
+    background-color: var(--psc-yellow-hover) !important;
+    color: var(--psc-black) !important;
+}
+
+.btn-psc-blue {
+    background-color: var(--psc-blue) !important;
+    color: white !important;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-psc-blue:hover {
+    background-color: var(--psc-blue-hover) !important;
+    color: var(--psc-black) !important;
+}
+
+.bg-psc-yellow {
+    background-color: var(--psc-yellow) !important;
+    color: var(--psc-black) !important;
+    font-weight: bold;
+}
+
+.feature-container-centered {
+  display: flex;
+  flex-wrap: wrap;           /* Erlaubt Zeilenumbruch, falls der Platz nicht reicht */
+  justify-content: center;    /* Zentriert die Spalten horizontal */
+  gap: 40px;                 /* Abstand zwischen den Spalten */
+  padding: 50px;
+}
+
+/* 2. Den Inhalt innerhalb jeder Spalte zentrieren */
+.feature-item-centered {
+  display: flex;
+  flex-direction: column;    /* Stapelt Kreis, H2 und P untereinander */
+  align-items: center;       /* Zentriert alles horizontal innerhalb der Spalte */
+  text-align: center;        /* Zentriert den Text selbst */
+  max-width: 300px;          /* Verhindert, dass der Text zu breit läuft */
+}
+
+/* 3. Styling für den schwarzen Kreis */
+.circle-centered {
+  width: 140px;
+  height: 140px;
+  background-color: black;
+  border-radius: 50%;        /* Macht das Quadrat zum Kreis */
+  margin-bottom: 20px;       /* Abstand zur Überschrift */
+
+  background-image: url(); /* Hier den Bildpfad eintragen */
+  background-size: cover;    /* Das Bild füllt den Kreis komplett aus */
+  background-position: center; /* Das Bild wird mittig zentriert */
+  background-repeat: no-repeat; /* Bild wird nicht gekachelt */
+}
+
+.centered_text {
+    text-align: center;
+    gap: 10px;                 /* Abstand zwischen den Spalten */
+    padding: 10px;
+}
+
+.footer {
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+}
+
+.profile-circle-img {
+    width: 140px;           /* Feste Breite */
+    height: 140px;          /* Gleiche Höhe für ein perfektes Quadrat */
+    border-radius: 50%;      /* Macht das Quadrat zum Kreis */
+    object-fit: cover;      /* WICHTIG: Verhindert, dass das Bild verzerrt wird */
+    object-position: center; /* Zentriert den Bildinhalt */
+    border: 3px solid #0056b3; /* Optional: Ein blauer Rahmen passend zum PSC */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Macht es etwas "schöner" */
+}
+
+.profile-circle-img-link {
+    background-color: transparent;
+    border: none;
+}
+
+.profile-circle-img-nav {
+    width: 50px;           /* Feste Breite */
+    height: 50px;          /* Gleiche Höhe für ein perfektes Quadrat */
+    border-radius: 50%;      /* Macht das Quadrat zum Kreis */
+    object-fit: cover;      /* WICHTIG: Verhindert, dass das Bild verzerrt wird */
+    object-position: center; /* Zentriert den Bildinhalt */
+    border: 3px solid #0056b3; /* Optional: Ein blauer Rahmen passend zum PSC */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Macht es etwas "schöner" */
+    margin-right: 20px;
+
+    background-image: url(); /* Hier den Bildpfad eintragen */
+    background-size: cover;    /* Das Bild füllt den Kreis komplett aus */
+    background-position: center; /* Das Bild wird mittig zentriert */
+    background-repeat: no-repeat; /* Bild wird nicht gekachelt */
+}
+
+.yellow-dot {
+    width: 10px;
+    height: 10px;
+    background-color: yellow;
+    border-radius: 50%;        /* Macht es rund */
+    display: inline-block;     /* Wichtig, damit Höhe/Breite wirken */
+    margin-right: 5px;         /* Abstand zum Text "In Prüfung" */
+    vertical-align: middle;    /* Zentriert den Punkt auf Texthöhe */
+}
+
+.green-dot {
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;        /* Macht es rund */
+    display: inline-block;     /* Wichtig, damit Höhe/Breite wirken */
+    margin-right: 5px;         /* Abstand zum Text "In Prüfung" */
+    vertical-align: middle;    /* Zentriert den Punkt auf Texthöhe */
+}
+
+.red-dot {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;        /* Macht es rund */
+    display: inline-block;     /* Wichtig, damit Höhe/Breite wirken */
+    margin-right: 5px;         /* Abstand zum Text "In Prüfung" */
+    vertical-align: middle;    /* Zentriert den Punkt auf Texthöhe */
+}
+
+.grey-dot {
+    width: 10px;
+    height: 10px;
+    background-color: grey;
+    border-radius: 50%;        /* Macht es rund */
+    display: inline-block;     /* Wichtig, damit Höhe/Breite wirken */
+    margin-right: 5px;         /* Abstand zum Text "In Prüfung" */
+    vertical-align: middle;    /* Zentriert den Punkt auf Texthöhe */
+}

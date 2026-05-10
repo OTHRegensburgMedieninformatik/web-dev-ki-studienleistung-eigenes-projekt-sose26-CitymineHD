@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">
+      <img src="/psc_logo.png" alt="Logo" width="100" height="60" class="d-inline-block">
+      PeisingerSC
+    </a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/news">News</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Verein
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/verein/overview">Überblick</a></li>
+            <li><a class="dropdown-item" href="/verein/anprechpartner">Ansprechpartner</a></li>
+            <!-- <li><hr class="dropdown-divider"></li> -->
+            <li><a class="dropdown-item" href="/verein/vorstandschaft">Vorstandschaft</a></li>
+            <li><a class="dropdown-item" href="/verein/sportanlage">Sportanlage</a></li>
+            <li><a class="dropdown-item" href="/verein/termine">Termine</a></li>
+            {{#unless isLogin}}
+            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a></li>
+            {{/unless}}
+            {{#if isLogin}}
+            <li><a class="dropdown-item" href="/verein/logout">Logout</a></li>
+            {{/if}}
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Abteilungen
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/department/breitensport">Breitensport</a></li>
+            <li><a class="dropdown-item" href="/department/soccer">Fußball</a></li>
+            <!-- <li><hr class="dropdown-divider"></li> -->
+            <li><a class="dropdown-item" href="/department/stockschuetzen">Stockschützen</a></li>
+            <li><a class="dropdown-item" href="/department/tennis">Tennis</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/archive">Archive</a>
+        </li>
+        {{#if isAdmin}}
+        <li class="nav-item">
+          <a class="nav-link" href="/archive">Admin Panel</a>
+        </li>
+        {{/if}}
+      </ul>
+      <form class="d-flex">
+        {{#if isLogin}}
+        <a class="profile-circle-img-link" href="/profile">
+          <div class="profile-circle-img-nav", style="background-image: url(/psc_logo.png);"></div>
+        </a>
+        {{/if}}
+        <a class="btn btn-psc-yellow me-auto" type="button" href="/membership">Jetzt Mitglied werden!</a>
+      </form>
+    </div>
+    <div class="modal fade" id="modalLogin" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-center">
+            <h5 class="modal-title">Login</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+          </div>
+          <div class="modal-body text-center d-flex flex-column align-items-center">
+            <form action="/verein/authenticate" method="post">
+              <label for="username">Benutzername</label>
+              <input type="input" class="form-control" id="username" name="username" placeholder="Benutzername">
+              <label for="password">Password</label>
+              <input type="input" class="form-control" id="password" name="password" placeholder="Password">
+              <button type="submit" class="btn btn-psc-yellow m-3">Anmelden</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  $("#{{id}}").addClass("active");  
+</script>

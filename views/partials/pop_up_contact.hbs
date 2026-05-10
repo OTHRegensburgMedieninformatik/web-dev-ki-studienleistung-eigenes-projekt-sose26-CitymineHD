@@ -1,0 +1,30 @@
+<div class="modal fade" id="modal{{modalId}}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h5 class="modal-title">{{name}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+      </div>
+      <div class="modal-body text-center d-flex flex-column align-items-center">
+        <div class="circle-centered", style="background-image: url({{src_img}});"></div>
+        <h5>Steckbrief</h5>
+        <p><strong>Position:</strong> {{position}}</p>
+        {{#if phone}}
+        <p><strong>Telefonnummer:</strong> {{phone}}</p>
+        {{/if}}
+        {{#if mail}}
+        <p><strong>E-Mail:</strong> {{mail}}</p>
+        {{/if}}
+        {{#if license}}
+        <p><strong>Lizenz:</strong> {{license}}</p>
+        {{/if}}
+        {{#if description}}
+        <p><strong>Weitere Informationen:</strong> {{description}}</p>
+        {{/if}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+      </div>
+    </div>
+  </div>
+</div>

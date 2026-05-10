@@ -1,0 +1,36 @@
+<div class="modal fade" id="add" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h5 class="modal-title">{{title}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+      </div>
+      <div class="modal-body text-center d-flex flex-column align-items-center">
+        <form action="/news/addNews" method="post">
+            <div class="row">
+                <div class="mb-3 col-4">
+                    {{!-- <label htmlFor="inputTitle" className="form-label">Title</label> --}}
+                    <input placeholder="Title" type="text" className="form-control" id="Title" name="title">
+                </div>
+                <div class="mb-3 col-4">
+                    {{!-- <label htmlFor="inputTitle" className="form-label">Beschreibung</label> --}}
+                    <input placeholder="Beschreibung" type="text" className="form-control" id="description" name="description">
+                </div>
+                <div class="mb-3 col-4">
+                    {{!-- <label htmlFor="inputTitle" className="form-label">Titlebild</label> --}}
+                    <input placeholder="Titlebild" type="text" className="form-control" id="title_img" name="title_img">
+                </div>
+            </div>
+            <div class="row">
+                <textarea class="form-control" id="content" name="content" rows="12">Artikel</textarea>
+            </div>
+            <button type="submit" class="btn btn-psc-yellow mt-3">Vorschau</button>
+            <button type="submit" class="btn btn-psc-yellow mt-3">Artikel hinzufügen</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-psc-yellow" data-bs-dismiss="modal">Schließen</button>
+      </div>
+    </div> 
+  </div>
+</div>
