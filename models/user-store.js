@@ -121,11 +121,11 @@ const userStore = {
     async updateUserProfile(userID, updatedData) {
         logger.info('Updating User ${userId}')
         const query = 'update project.member_data set lastname=$1, firstname=$2, birthday=$3, address=$4, postcode=$5, city=$6, phone=$7, handy=$8, mail=$9 where id=$10';
-        const values = [updatedData.firstName, updatedData.lastName, updatedData.birthday, updatedData.address, updatedData.postcode, updatedData.city, updatedData.phone, updatedData.handy, updatedData.mail, userID];
+        const values = [updatedData.lastName, updatedData.firstName, updatedData.birthday, updatedData.address, updatedData.postcode, updatedData.city, updatedData.phone, updatedData.handy, updatedData.mail, userID];
 
         try {
             await dataStoreClient.query(query, values)
-        } catch (e) { 
+        } catch (e) {
             console.log("Error getting apply-status", e); 
         }
     }
