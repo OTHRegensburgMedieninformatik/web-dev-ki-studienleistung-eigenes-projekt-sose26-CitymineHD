@@ -21,30 +21,34 @@ Platz. Wir bilden nach den aktuellen BFV-Standards des Jugendfußballs aus:</p>
     <div class="feature-container-centered">
         <div class="feature-item-centered col-3">
             <div class="card" style="height: 100%;">
-                <div class="card-body"  style="display: flex; flex-direction: column; flex-grow: 1;">
+                <div class="card-body bg-psc-yellow"  style="display: flex; flex-direction: column; flex-grow: 1;">
                     <h5 class="card-title">G-Jugend</h5>
-                    <p class="card-text" style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">Suche dir deine Lieblingssportart aus!</p>
-                    <a href="#" class="btn btn-psc-blue">Sportarten durchsuchen</a>
+                    {{!-- <p class="card-text" style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">Dein Einstieg in den Fußball</p> --}}
+                    <img class="img-fluid" src="/src/department/soccer/G_Logo.png" alt="G_Logo">
+                    <a href="#" class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modalG">Entdecken &raquo;</a>
                 </div>
             </div>      
         </div>
+        {{> pop_up_team modalId="G" teamMembers=teams.G_Jugend}}
         <div class="feature-item-centered col-3">
             <div class="card" style="height: 100%;">
-                <div class="card-body" style="display: flex; flex-direction: column; flex-grow: 1;">
+                <div class="card-body bg-psc-yellow" style="display: flex; flex-direction: column; flex-grow: 1;">
                     <h5 class="card-title">F-Jugend</h5>
-                    <p class="card-text" style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">Wir bieten immer ein kostenloses Probetraining an, damit du dir das Training, unsere Übungsleiter und den Verein anschauen kannst.</p>
-                    <a href="/verein/anprechpartner" class="btn btn-psc-blue">Probetraining vereinbaren</a>
+                    <img class="img-fluid" src="/src/department/soccer/F_Logo.png" alt="F_Logo">
+                    <a href="#" class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modalF">Entdecken &raquo;</a>
                 </div>
             </div>
         </div>
+        {{> pop_up_team modalId="F" teamMembers=teams.F_Jugend}}
         <div class="feature-item-centered col-3">
             <div class="card" style="height: 100%;">
-                <div class="card-body" style="display: flex; flex-direction: column; flex-grow: 1;">
+                <div class="card-body bg-psc-yellow" style="display: flex; flex-direction: column; flex-grow: 1;">
                     <h5 class="card-title">E-Jugend</h5>
-                    <p class="card-text" style="display: flex; justify-content: center; align-items: center;flex-grow: 1;">Werde Teil unserer Gemeinschaft und genieße alle Vorteile als Mitglied.</p>
-                    <a href="#" class="btn btn-psc-blue">Mitgliedschaft abschließen</a>
+                    <img class="img-fluid" src="/src/department/soccer/E_Logo.png" alt="E_Logo">
+                    <a href="#" class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modalE">Entdecken &raquo;</a>
                 </div>
             </div>
         </div>
+        {{> pop_up_team modalId="E" teamMembers=teams.E_Jugend}}
      </div>
 </body>

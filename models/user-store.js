@@ -128,6 +128,31 @@ const userStore = {
         } catch (e) {
             console.log("Error getting apply-status", e); 
         }
+    },
+
+    async getTeams() {
+        logger.info("Getting all Teams including staff");
+        const queryG = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'G_Jugend\'';
+        const queryF = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'F_Jugend\'';
+        const queryE = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'E_Jugend\'';
+
+        try {
+            const G_Jugend = await dataStoreClient.query(queryG);
+            const F_Jugend = await dataStoreClient.query(queryF);
+            const E_Jugend = await dataStoreClient.query(queryE);
+
+            let teams = {
+                G_Jugend: G_Jugend.rows,
+                F_Jugend: F_Jugend.rows,
+                E_Jugend: E_Jugend.rows
+            };
+
+            console.log(teams);
+
+            return teams;
+        } catch (e) { 
+            console.log("Error getting all Teams including staff", e); 
+        }
     }
 }; 
  

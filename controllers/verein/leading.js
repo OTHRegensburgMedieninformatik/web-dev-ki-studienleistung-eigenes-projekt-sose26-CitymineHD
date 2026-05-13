@@ -5,10 +5,11 @@ const leading = {
   async index(request, response) {
     const leadings = await leadingStore.getAllLeadings();
     logger.info("leading rendering");
+
+    console.log(leadings);
     const viewData = {
       title: "Leading",
-      firstRow: leadings.slice(0, 3),
-      secondRow: leadings.slice(3),
+      leading: leadings,
       isLogin: request.session.user,
       isAdmin: request.session.user && request.session.role === 'admin'
     };
