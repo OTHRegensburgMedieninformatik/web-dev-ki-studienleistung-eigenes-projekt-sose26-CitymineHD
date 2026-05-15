@@ -5,68 +5,8 @@
                 <h5 class="modal-title">Mitglied bearbeiten</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#modal{{user_id}}" aria-label="Schließen"></button>
             </div>
-            <div class="modal-body text-center d-flex flex-column align-items-center">
-                <div class="row d-flex">
-                    <div class="col-md-6">
-                        <table style="width: 100%; table-layout: fixed;">
-                            <tr>
-                                <td style="width: 120px; vertical-align: top;"><strong>Vorname:</strong></td>
-                                <td>{{firstname}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Geburtstag:</strong></td>
-                                <td>{{birthday}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Postleitzahl:</strong></td>
-                                <td>{{postcode}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>E-Mail:</strong></td>
-                                <td>{{mail}}</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-6">
-                        <table style="width: 100%; table-layout: fixed;">
-                            <tr>
-                                <td style="width: 120px;"><strong>Nachname:</strong></td>
-                                <td>{{lastname}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Adresse:</strong></td>
-                                <td>{{address}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Ort:</strong></td>
-                                <td>{{city}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Telefon:</strong></td>
-                                <td>{{phone}}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Handy:</strong></td>
-                                <td>{{handy}}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style="padding: 10px; text-align: center;">Mitgliedsstatus</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: center;">{{{applyStatus}}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <div class="modal-body text-center d-flex flex-column align-items-center" id="body-{{user_id}}"></div>
+                
             <div class="modal-footer d-flex justify-content-end">
                 <form class="d-flex" style="margin-right: 30px" action="/profile/editMember/{{user_id}}" method="post">
                     <select class="form-select" style="margin-right: 10px;" id="status" name="status">
@@ -81,3 +21,81 @@
         </div>
     </div>
 </div>
+
+<script>
+    const memberModal = document.getElementById('modal{{user_id}}');
+    const contentContainer = document.getElementById('body-{{user_id}}');
+
+    memberModal.addEventListener('show.bs.modal', async () => {
+        try {
+            const response = await fetch(`/profile/memberDetails/{{user_id}}`);
+            const data = await response.json();
+
+            console.log("Mitgliedsdaten:", data); // Debug-Ausgabe der Mitgliedsdaten
+
+            contentContainer.innerHTML = `<div class="row d-flex"> 
+                    <div class="col-md-6">
+                        <table style="width: 100%; table-layout: fixed;">
+                            <tr>
+                                <td style="width: 120px; vertical-align: top;"><strong>Vorname:</strong></td>
+                                <td>${data.firstName}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Geburtstag:</strong></td>
+                                <td>${data.birthday}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Postleitzahl:</strong></td>
+                                <td>${data.postcode}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>E-Mail:</strong></td>
+                                <td>${data.mail}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table style="width: 100%; table-layout: fixed;">
+                            <tr>
+                                <td style="width: 120px;"><strong>Nachname:</strong></td>
+                                <td>${data.lastName}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Adresse:</strong></td>
+                                <td>${data.address}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ort:</strong></td>
+                                <td>${data.city}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Telefon:</strong></td>
+                                <td>${data.phone}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Handy:</strong></td>
+                                <td>${data.handy}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="padding: 10px; text-align: center;">Mitgliedsstatus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center;">${data.applyStatus}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>`;
+        } catch (e) {
+            contentContainer.innerHTML = '<div class="alert alert-danger">Fehler beim Laden der Mitgliedsdaten</div>';
+        }
+    });
+</script>

@@ -18,12 +18,13 @@ Platz. Wir bilden nach den aktuellen BFV-Standards des Jugendfußballs aus:</p>
         <li>Spaß steht immer im Vordergrund unserer Ausbildung!</li>
     </ul>
 
+    <h3 class="text-center mt-5">Unser Kinderbereich</h3>
+
     <div class="feature-container-centered">
         <div class="feature-item-centered col-3">
             <div class="card" style="height: 100%;">
                 <div class="card-body bg-psc-yellow"  style="display: flex; flex-direction: column; flex-grow: 1;">
                     <h5 class="card-title">G-Jugend</h5>
-                    {{!-- <p class="card-text" style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">Dein Einstieg in den Fußball</p> --}}
                     <img class="img-fluid" src="/src/department/soccer/G_Logo.png" alt="G_Logo">
                     <a href="#" class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modalG">Entdecken &raquo;</a>
                 </div>
@@ -50,5 +51,33 @@ Platz. Wir bilden nach den aktuellen BFV-Standards des Jugendfußballs aus:</p>
             </div>
         </div>
         {{> pop_up_team modalId="E" teamMembers=teams.E_Jugend}}
-     </div>
+    </div>
+
+    <h3 class="text-center mt-5">Unser Jugend- & Herrenbereich</h3>
+
+    <div class="feature-container-centered" style="align-items: stretch;">
+        <div class="feature-item-centered col-3" style="margin-right: 50px;">
+            <div class="card" style="height: 100%;">
+                <div class="card-body bg-psc-yellow" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h5 class="card-title">JFG Donautal</h5>
+                    <div style="background-color: white; display: flex; justify-content: center; align-items: center;">
+                        <img class="img-fluid" src="/src/department/soccer/Jfg_Logo.png" alt="Jfg_Logo">
+                    </div>
+                    <a href="https://www.jfg-donautal.de/" class="btn btn-psc-blue">Entdecken &raquo;</a>
+                </div>
+            </div>
+        </div>
+        <div class="feature-item-centered col-3">
+            <div class="card" style="height: 100%;">
+                <div class="card-body bg-psc-yellow" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h5 class="card-title">1. Herrenmannschaft</h5>
+                    <div style="background-color: white; display: flex; justify-content: center; align-items: center; flex-grow: 1;">
+                        <img class="img-fluid" src="/src/department/soccer/h1_Logo.png" alt="h1_Logo">
+                    </div>
+                    <a href="#" class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modalH1">Entdecken &raquo;</a>
+                </div>
+            </div>      
+        {{> pop_up_team modalId="H1" teamMembers=teams.Herren1}}
+        </div>
+    </div>
 </body>
