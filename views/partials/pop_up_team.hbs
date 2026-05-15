@@ -1,0 +1,49 @@
+<div class="modal fade" id="modal{{modalId}}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h5 class="modal-title">{{modalId}}-Jugend</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-center flex-wrap">
+            <img class="img-fluid" src="/src/department/soccer/{{modalId}}.png" alt="Banner Jugend">   
+        </div>                                                                     
+        <h3 class="text-center mt-5">Unsere Trainer</h3>
+        <div class="feature-container-centered">
+            {{#each teamMembers}}
+            <div class="feature-item-centered col-lg-2" style="margin-left: 30px; margin-right: 30px;">
+                <div class="card" style="height: 100%; border: none;">
+                    <div class="card-body" style="display: flex; flex-direction: column; flex-grow: 1; align-items: center; text-align: center;">
+                        <div class="circle-centered", style="background-image: url({{src_img}});"></div>
+                        <p><strong>{{firstname}} {{lastname}}</strong></p>
+                        <p>{{position}}</p>
+                        {{#if license}}
+                        <p>{{license}}</p>
+                        {{/if}}
+                        <p class="small">{{mail}}</p>
+                        <p class="small">{{handy}}</p>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        <div class="training-info-box mt-4">
+            <h4 class="text-center">Aktuelle Trainingszeiten</h4>
+            <hr>
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <strong>Freitag:</strong> 15:00– 16:30 Uhr
+                </div>
+            </div>
+            <p class="text-center mt-2 small text-muted">
+                Treffpunkt: Zone A (Oben Links)
+            </p>
+        </div>
+      </div>    
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+      </div>
+    </div>
+  </div>
+</div>

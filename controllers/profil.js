@@ -7,7 +7,7 @@ const home = {
         const user = request.session.userId;
         const userProfile = await userStore.getUserById(user);
         const applyStatus = await userStore.getUserApplyStatus(user);
-        const applys = await userStore.getAllUserApplys(user);
+        const applys = await userStore.getAllUserApplys();
         const allAllMembers = await userStore.getAllUsers();
 
         const viewData = {
@@ -27,6 +27,14 @@ const home = {
         const newStatus = request.body.status;
         await userStore.updateUserStatus(userId, newStatus);
         response.redirect("/profile");
+    },
+
+    async memberDetails(request, response) {
+        const userId = request.params.user_id;
+
+        const userDetails = await userStore.getUserById(userId);
+
+        response.json(userDetails);
     }
 };
 

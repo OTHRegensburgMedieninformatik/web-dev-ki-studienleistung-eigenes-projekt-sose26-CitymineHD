@@ -31,6 +31,7 @@ router.get("/profile", auth.protected, profil.index);
 router.post("/profile/editMember/:id", auth.protected, profil.editMember);
 router.get("/profile/edit/", auth.protected, profil_edit.index);
 router.post("/profile/edit/:id", auth.protected, profil_edit.update);
+router.get("/profile/memberDetails/:user_id", auth.protected, profil.memberDetails);
 
 router.get("/verein/termine", appointments.index);
 router.get("/verein/anprechpartner", contact.index);

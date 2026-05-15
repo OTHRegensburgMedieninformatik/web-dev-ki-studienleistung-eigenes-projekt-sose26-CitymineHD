@@ -1,3 +1,4 @@
+const { error } = require("winston");
 const userstore = require("../models/user-store.js");
 const logger = require("../utils/logger.js");
 
@@ -31,11 +32,14 @@ const accounts = {
 
     async authenticate(request, response) {
         let user = await userstore.authenticateUser(request.body.username, request.body.password);
+
         if (user) {
             request.session.userId = user.id;
             request.session.user = user.username;
             request.session.role = user.role;
             logger.info("User successfully authenticated and added to session", user);
+            response.redirect("/");
+        } else {
             response.redirect("/");
         }
     },

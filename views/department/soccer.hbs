@@ -1,5 +1,83 @@
 {{> menu }}
 <body>
-    <h1>Fußball</h1>
-    <p>Hier findest du die neuesten Nachrichten rund um den Peisinger SC.</p>
+    <div class="bg-psc-yellow centered_text md-5">
+        <h1>Abteilung Fußball</h1>
+    </div>
+
+    <img class="img-fluid" src="/src/department/soccer/home.png" alt="PSC Soccer (AI Generated)">
+
+
+    <h3 class="text-center mt-5">Unsere Trainingsphilosophie</h3>
+    <p class="text-center">Der Peisinger SC hat in den letzten Jahren eine Philosophie für seine Fußball-
+Jugendabteilung erarbeitet, die für weit mehr steht als nur das reine Fußballspielen.
+Unser Anspruch ist eine ganzheitliche, spaßorientierte Ausbildung auf und neben dem
+Platz. Wir bilden nach den aktuellen BFV-Standards des Jugendfußballs aus:</p>
+    <ul class="text-center">
+        <li>Unsere Trainer bauen ihre Trainingseinheiten grundsaätzlich nach dem Vorbild der Trainingsphilosophie Deutschlands auf</li>
+        <li>Wir legen großen Wert auf die individuelle Förderung der Spieler. Wir versuchen daher in jeder Trainingseinheit in Kleingruppen zu unterteilen</li>
+        <li>Spaß steht immer im Vordergrund unserer Ausbildung!</li>
+    </ul>
+
+    <h3 class="text-center mt-5">Unser Kinderbereich</h3>
+
+    <div class="feature-container-centered">
+        <div class="feature-item-centered col-3">
+            <div class="card" style="height: 100%;">
+                <div class="card-body bg-psc-yellow"  style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h5 class="card-title">G-Jugend</h5>
+                    <img class="img-fluid" src="/src/department/soccer/G_Logo.png" alt="G_Logo">
+                    <a href="#" class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modalG">Entdecken &raquo;</a>
+                </div>
+            </div>      
+        </div>
+        {{> pop_up_team modalId="G" teamMembers=teams.G_Jugend}}
+        <div class="feature-item-centered col-3">
+            <div class="card" style="height: 100%;">
+                <div class="card-body bg-psc-yellow" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h5 class="card-title">F-Jugend</h5>
+                    <img class="img-fluid" src="/src/department/soccer/F_Logo.png" alt="F_Logo">
+                    <a href="#" class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modalF">Entdecken &raquo;</a>
+                </div>
+            </div>
+        </div>
+        {{> pop_up_team modalId="F" teamMembers=teams.F_Jugend}}
+        <div class="feature-item-centered col-3">
+            <div class="card" style="height: 100%;">
+                <div class="card-body bg-psc-yellow" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h5 class="card-title">E-Jugend</h5>
+                    <img class="img-fluid" src="/src/department/soccer/E_Logo.png" alt="E_Logo">
+                    <a href="#" class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modalE">Entdecken &raquo;</a>
+                </div>
+            </div>
+        </div>
+        {{> pop_up_team modalId="E" teamMembers=teams.E_Jugend}}
+    </div>
+
+    <h3 class="text-center mt-5">Unser Jugend- & Herrenbereich</h3>
+
+    <div class="feature-container-centered" style="align-items: stretch;">
+        <div class="feature-item-centered col-3" style="margin-right: 50px;">
+            <div class="card" style="height: 100%;">
+                <div class="card-body bg-psc-yellow" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h5 class="card-title">JFG Donautal</h5>
+                    <div style="background-color: white; display: flex; justify-content: center; align-items: center;">
+                        <img class="img-fluid" src="/src/department/soccer/Jfg_Logo.png" alt="Jfg_Logo">
+                    </div>
+                    <a href="https://www.jfg-donautal.de/" class="btn btn-psc-blue">Entdecken &raquo;</a>
+                </div>
+            </div>
+        </div>
+        <div class="feature-item-centered col-3">
+            <div class="card" style="height: 100%;">
+                <div class="card-body bg-psc-yellow" style="display: flex; flex-direction: column; flex-grow: 1;">
+                    <h5 class="card-title">1. Herrenmannschaft</h5>
+                    <div style="background-color: white; display: flex; justify-content: center; align-items: center; flex-grow: 1;">
+                        <img class="img-fluid" src="/src/department/soccer/h1_Logo.png" alt="h1_Logo">
+                    </div>
+                    <a href="#" class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modalH1">Entdecken &raquo;</a>
+                </div>
+            </div>      
+        {{> pop_up_team modalId="H1" teamMembers=teams.Herren1}}
+        </div>
+    </div>
 </body>
