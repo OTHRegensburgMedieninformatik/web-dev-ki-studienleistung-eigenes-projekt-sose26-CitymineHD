@@ -44,121 +44,126 @@
                 <h5 class="modal-title">Online-Mitgliedsantrag</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
             </div>
-            <div class="modal-body text-center d-flex flex-column align-items-center modal-scrollable">
-                <form action="/membership/apply" method="post">
-                    <div class="row">
-                        <h4 class="p-2 mb-4 bg-psc-yellow">Persönliche Daten</h4>
-                        <div class="col">                
-                            <label for="firstName">Vorname:</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Vorname">
+            <div class="modal-body" id="body-membership" class="text-center d-flex flex-column align-items-center modal-scrollable">
+                <div class="text-center d-flex flex-column align-items-center modal-scrollable" id="modal-registration-form">
+                    <form id="form" >
+                        <div class="row">
+                            <h4 class="p-2 mb-4 bg-psc-yellow">Persönliche Daten</h4>
+                            <div class="col">                
+                                <label for="firstName">Vorname:</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Vorname">
+                            </div>
+                            <div class="col">
+                                <label for="lastName">Nachname:</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Nachname">
+                            </div>
+                            <div class="col">
+                                <label for="birthDate">Geburtstag:</label>
+                                <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="Geburtstag">
+                            </div>
                         </div>
-                        <div class="col">
-                            <label for="lastName">Nachname:</label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Nachname">
+                        <div class="row mt-5">
+                            <h4 class="p-2 mb-4 bg-psc-yellow">Adresse</h4>
+                            <div class="col">
+                                <label for="address">Anschrift:</label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Anschrift">
+                            </div>
                         </div>
-                        <div class="col">
-                            <label for="birthDate">Geburtstag:</label>
-                            <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="Geburtstag">
+                        <div class="row">
+                            <div class="col">                
+                                <label for="postCode">Postleitzahl:</label>
+                                <input type="text" class="form-control" id="postCode" name="postCode" placeholder="Postleitzahl">
+                            </div>
+                            <div class="col">
+                                <label for="city">Wohnort:</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="Wohnort">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-5">
-                        <h4 class="p-2 mb-4 bg-psc-yellow">Adresse</h4>
-                        <div class="col">
-                            <label for="address">Anschrift:</label>
-                            <input type="text" class="form-control" id="address" name="address" placeholder="Anschrift">
+                        <div class="row mt-5">
+                            <h4 class="p-2 mb-4 bg-psc-yellow">Kontaktinformationen</h4>
+                            <div class="col">
+                                <label for="phone">Telefon:</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telefon">
+                            </div>
+                            <div class="col">
+                                <label for="mobile">Handy:</label>
+                                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Handy">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">                
-                            <label for="postCode">Postleitzahl:</label>
-                            <input type="text" class="form-control" id="postCode" name="postCode" placeholder="Postleitzahl">
+                        <div class="row">
+                            <div class="col">
+                                <label for="email">E-Mail:</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail">
+                            </div>
                         </div>
-                        <div class="col">
-                            <label for="city">Wohnort:</label>
-                            <input type="text" class="form-control" id="city" name="city" placeholder="Wohnort">
+                        <div class="row mt-5">
+                            <h4 class="p-2 mb-4 bg-psc-yellow">Abteilung</h4>
+                            <div class="col">
+                                {{!-- <select class="form-select" id="department" name="department">
+                                    <option value="">Abteilung auswählen</option>
+                                    <option value="fussball">Breitensport</option>
+                                    <option value="handball">Fußball</option>
+                                    <option value="volleyball">Stockschützen</option>
+                                    <option value="schwimmen">Tennis</option>
+                                    <option value="leichtathletik">JFG D-A</option>
+                                </select> --}}
+                                <label for="breitensport">Breitensport</label>
+                                <input class="m-2" type="checkbox" id="breitensport" name="breitensport">
+                                <label for="soccer">Fußball</label>
+                                <input class="m-2" type="checkbox" id="soccer" name="soccer">
+                                <label for="stock">Stockschützen</label>
+                                <input class="m-2" type="checkbox" id="stock" name="stock">
+                                <label for="tennis">Tennis</label>
+                                <input class="m-2" type="checkbox" id="tennis" name="tennis">
+                                <label for="jfg">JFG D-A</label>
+                                <input class="m-2" type="checkbox" id="jfg" name="jfg">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row mt-5">
-                        <h4 class="p-2 mb-4 bg-psc-yellow">Kontaktinformationen</h4>
-                        <div class="col">
-                            <label for="phone">Telefon:</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telefon">
+                        <div class="row mt-5">
+                            <h4 class="p-2 mb-4 bg-psc-yellow">Zahlungsinformationen</h4>
+                            <p><strong>Unsere Gläubiger-ID:</strong> DE64PSC00000397196</p>
+                            <p><strong>Ihre Mandatsreferenz:</strong> Wird Ihnen mit der Aufnahmebestätigung mitgeteilt!</p>
+                            <p>Ich/ Wir ermächtige(n) den Peisinger Sportclub e.V., Zahlungen von meinem/ unseren Konto mittels Lastschrift einzuziehen. Zugleich weise(n) ich/ wir mein/ unser Kreditinstitut an, die vom Peisinger Sportclub e.V. auf mein/unser Konto gezogenen Lastschriften einzulösen.</p>
+                            <div class="col">
+                                <p>Kontoinhaber:</p>
+                            </div>
+                            <div class="col">
+                                <input type="input" class="form-control" id="accountOwnerFirstName" name="accountOwnerFirstName" placeholder="Nachname">
+                            </div>
+                            <div class="col">
+                                <input type="input" class="form-control" id="accountOwnerLastName" name="accountOwnerLastName" placeholder="Vorname">
+                            </div>
+                            <div class="col">
+                                <input type="input" class="form-control" id="accountOwnerAddress" name="accountOwnerAddress" placeholder="Adresse">
+                            </div>
                         </div>
-                        <div class="col">
-                            <label for="mobile">Handy:</label>
-                            <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Handy">
+                        <div class="row">
+                            <div class="col">
+                                <label for="accountIBAN">IBAN</label>
+                                <input type="input" class="form-control" id="accountIBAN" name="accountIBAN" placeholder="IBAN">
+                            </div>
+                            <div class="col">
+                                <label for="accountBIC">BIC</label>
+                                <input type="input" class="form-control" id="accountBIC" name="accountBIC" placeholder="BIC">
+                            </div>
+                            <div class="col">
+                                <label for="accountBank">Kreditinstitut</label>
+                                <input type="input" class="form-control" id="accountBank" name="accountBank" placeholder="Kreditinstitut">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="email">E-Mail:</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail">
+                        <div class="row mt-5 mb-5">
+                            <h4 class="p-2 mb-4 bg-psc-yellow">Datenschutz und Newsletter</h4>
+                            <label for="privacy1">Ich habe die Datenschutzerklärung zur Kenntnis genommen</label>
+                            <input type="checkbox" id="privacy1" name="privacy1">
+                            <label for="privacy2">Ich stimme zu den Newsletter zu empfangen</label>
+                            <input type="checkbox" id="privacy2" name="privacy2">
                         </div>
-                    </div>
-                    <div class="row mt-5">
-                        <h4 class="p-2 mb-4 bg-psc-yellow">Abteilung</h4>
-                        <div class="col">
-                            {{!-- <select class="form-select" id="department" name="department">
-                                <option value="">Abteilung auswählen</option>
-                                <option value="fussball">Breitensport</option>
-                                <option value="handball">Fußball</option>
-                                <option value="volleyball">Stockschützen</option>
-                                <option value="schwimmen">Tennis</option>
-                                <option value="leichtathletik">JFG D-A</option>
-                            </select> --}}
-                            <label for="breitensport">Breitensport</label>
-                            <input class="m-2" type="checkbox" id="breitensport" name="breitensport">
-                            <label for="soccer">Fußball</label>
-                            <input class="m-2" type="checkbox" id="soccer" name="soccer">
-                            <label for="stock">Stockschützen</label>
-                            <input class="m-2" type="checkbox" id="stock" name="stock">
-                            <label for="tennis">Tennis</label>
-                            <input class="m-2" type="checkbox" id="tennis" name="tennis">
-                            <label for="jfg">JFG D-A</label>
-                            <input class="m-2" type="checkbox" id="jfg" name="jfg">
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <h4 class="p-2 mb-4 bg-psc-yellow">Zahlungsinformationen</h4>
-                        <p><strong>Unsere Gläubiger-ID:</strong> DE64PSC00000397196</p>
-                        <p><strong>Ihre Mandatsreferenz:</strong> Wird Ihnen mit der Aufnahmebestätigung mitgeteilt!</p>
-                        <p>Ich/ Wir ermächtige(n) den Peisinger Sportclub e.V., Zahlungen von meinem/ unseren Konto mittels Lastschrift einzuziehen. Zugleich weise(n) ich/ wir mein/ unser Kreditinstitut an, die vom Peisinger Sportclub e.V. auf mein/unser Konto gezogenen Lastschriften einzulösen.</p>
-                        <div class="col">
-                            <p>Kontoinhaber:</p>
-                        </div>
-                        <div class="col">
-                            <input type="input" class="form-control" id="accountOwnerFirstName" name="accountOwnerFirstName" placeholder="Nachname">
-                        </div>
-                        <div class="col">
-                            <input type="input" class="form-control" id="accountOwnerLastName" name="accountOwnerLastName" placeholder="Vorname">
-                        </div>
-                        <div class="col">
-                            <input type="input" class="form-control" id="accountOwnerAddress" name="accountOwnerAddress" placeholder="Adresse">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label for="accountIBAN">IBAN</label>
-                            <input type="input" class="form-control" id="accountIBAN" name="accountIBAN" placeholder="IBAN">
-                        </div>
-                        <div class="col">
-                            <label for="accountBIC">BIC</label>
-                            <input type="input" class="form-control" id="accountBIC" name="accountBIC" placeholder="BIC">
-                        </div>
-                        <div class="col">
-                            <label for="accountBank">Kreditinstitut</label>
-                            <input type="input" class="form-control" id="accountBank" name="accountBank" placeholder="Kreditinstitut">
-                        </div>
-                    </div>
-                    <div class="row mt-5 mb-5">
-                        <h4 class="p-2 mb-4 bg-psc-yellow">Datenschutz und Newsletter</h4>
-                        <label for="privacy1">Ich habe die Datenschutzerklärung zur Kenntnis genommen</label>
-                        <input type="checkbox" id="privacy1" name="privacy1">
-                        <label for="privacy2">Ich stimme zu den Newsletter zu empfangen</label>
-                        <input type="checkbox" id="privacy2" name="privacy2">
-                    </div>
-                    <button type="submit" class="btn btn-psc-yellow">Senden und Mitglied werden!</button>
-                </form>
+                        <button type="submit" class="btn btn-psc-yellow">Senden und Mitglied werden!</button>
+                    </form>
+                </div>
+                <div id="modal-registration-successful" class="hidden">
+                    <p>Danke für Ihre Anmeldung!</p>
+                </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
             </div>
@@ -167,3 +172,55 @@
         </div>
     </div>
 </body>
+
+<script>
+    const memberModal = document.getElementById('membershipModal');
+    const contentContainer = document.getElementById('body-membership');
+
+    memberModal.addEventListener('show.bs.modal', async () => {
+        document.getElementById('modal-registration-form').classList.remove('hidden');
+        document.getElementById('modal-registration-successful').classList.add('modal-registration-successful');
+    });
+
+    memberModal.querySelector('form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formElement = event.target; 
+        const formData = new FormData(formElement);
+
+        console.log("Formulardaten:", Object.fromEntries(formData.entries())); // Debug-Ausgabe der Formulardaten
+
+        try {
+            const response = await fetch('/membership/apply', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(Object.fromEntries(formData.entries()))
+            });
+            if (response.ok) {
+                document.getElementById('modal-registration-form').classList.add('hidden');
+                document.getElementById('modal-registration-successful').classList.remove('hidden');
+
+                contentContainer.innerHTML = `<div class="text-center d-flex flex-column align-items-center modal-scrollable">
+                    <h3>Danke für Ihre Anmeldung! Wir werden uns in Kürze bei Ihnen melden.</h3>
+                    <p>Falls Sie Fragen haben, können Sie uns jederzeit unseren <a href="mailto:schriftführer@peisinger-sc.de">Schriftführer</a> kontaktieren.</p>
+                    <h5 style="margin-top: 20px;"> Deine Login-Daten:</h5>
+                    
+                    <p><strong>Benutzername:</strong> ${formData.get('firstName')}.${formData.get('lastName')}</p>
+                    <p><strong>Passwort:</strong> Deine Postleitzahl (sofort nach der Anmeldung bitte ändern!)</p>
+
+                    <p style="margin-top: 20px;">Mit den Login-Daten kannst du dich jederzeit auf unserer Webseite anmelden, um deinen Mitgliedsstatus zu überprüfen oder deine Daten zu aktualisieren.</p>
+
+                    <p style="margin-top: 20px;">Mit sportlichen Grüßen,</p>
+                    <p>Dein Peisinger Sportclub Team</p>
+                </div>`;
+            } else {
+                // Handle error case
+                console.error('Fehler bei der Registrierung:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Fehler bei der Registrierung:', error);
+        }
+    });
+</script>

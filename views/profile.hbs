@@ -93,7 +93,7 @@
                     <div class="row d-flex">
                         <div class="col-md-6">
                             <h5 style="text-decoration: underline;">Neue Anträge</h5>
-                             <table style="width: 100%; table-layout: fixed;">
+                            <table style="width: 100%; table-layout: fixed;">
                                 <thead>
                                     <tr>
                                         <th style="padding: 10px; text-align: center;">Vorname</th>
@@ -110,10 +110,10 @@
                                     </tr>
                                     {{/each}}
                                 </tbody>
-                             </table>
+                            </table>
                         </div>
                         {{#each applys}}
-                        {{> pop_up_edit_member modalId=user_id firstname=firstname lastname=lastname birthday=birthday postcode=postcode mail=mail address=address city=city phone=phone handy=handy applyStatus=status}}
+                        {{> pop_up_edit_member modalId=id}}
                         {{/each}}
                         <div class="col-md-6">
                             <h5 style="text-decoration: underline;">Mitglieder</h5>
@@ -137,7 +137,7 @@
                              </table>
                         </div>
                         {{#each allMembers}}
-                        {{> pop_up_edit_member modalId=user_id}}
+                        {{> pop_up_edit_member modalId=id}}
                         {{/each}}
                     </div>
                 </div>

@@ -23,79 +23,79 @@
 </div>
 
 <script>
-    const memberModal = document.getElementById('modal{{user_id}}');
-    const contentContainer = document.getElementById('body-{{user_id}}');
+    (function() {
+        const memberModal = document.getElementById('modal{{user_id}}');
+        const contentContainer = document.getElementById('body-{{user_id}}');
 
-    memberModal.addEventListener('show.bs.modal', async () => {
-        try {
-            const response = await fetch(`/profile/memberDetails/{{user_id}}`);
-            const data = await response.json();
+        memberModal.addEventListener('show.bs.modal', async () => {
+            try {
+                const response = await fetch(`/profile/memberDetails/{{user_id}}`);
+                const data = await response.json();
 
-            console.log("Mitgliedsdaten:", data); // Debug-Ausgabe der Mitgliedsdaten
-
-            contentContainer.innerHTML = `<div class="row d-flex"> 
-                    <div class="col-md-6">
-                        <table style="width: 100%; table-layout: fixed;">
-                            <tr>
-                                <td style="width: 120px; vertical-align: top;"><strong>Vorname:</strong></td>
-                                <td>${data.firstName}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Geburtstag:</strong></td>
-                                <td>${data.birthday}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Postleitzahl:</strong></td>
-                                <td>${data.postcode}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>E-Mail:</strong></td>
-                                <td>${data.mail}</td>
-                            </tr>
-                        </table>
+                contentContainer.innerHTML = `
+                    <div class="row d-flex"> 
+                        <div class="col-md-6">
+                            <table style="width: 100%; table-layout: fixed;">
+                                <tr>
+                                    <td style="width: 120px; vertical-align: top;"><strong>Vorname:</strong></td>
+                                    <td>${data.firstName}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Geburtstag:</strong></td>
+                                    <td>${data.birthday}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Postleitzahl:</strong></td>
+                                    <td>${data.postcode}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>E-Mail:</strong></td>
+                                    <td>${data.mail}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <table style="width: 100%; table-layout: fixed;">
+                                <tr>
+                                    <td style="width: 120px;"><strong>Nachname:</strong></td>
+                                    <td>${data.lastName}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Adresse:</strong></td>
+                                    <td>${data.address}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ort:</strong></td>
+                                    <td>${data.city}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Telefon:</strong></td>
+                                    <td>${data.phone}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Handy:</strong></td>
+                                    <td>${data.handy}</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <table style="width: 100%; table-layout: fixed;">
-                            <tr>
-                                <td style="width: 120px;"><strong>Nachname:</strong></td>
-                                <td>${data.lastName}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Adresse:</strong></td>
-                                <td>${data.address}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Ort:</strong></td>
-                                <td>${data.city}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Telefon:</strong></td>
-                                <td>${data.phone}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Handy:</strong></td>
-                                <td>${data.handy}</td>
-                            </tr>
+                    <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="padding: 10px; text-align: center;">Mitgliedsstatus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center;">${data.applyStatus}</td>
+                                </tr>
+                            </tbody>
                         </table>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style="padding: 10px; text-align: center;">Mitgliedsstatus</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td style="text-align: center;">${data.applyStatus}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>`;
-        } catch (e) {
-            contentContainer.innerHTML = '<div class="alert alert-danger">Fehler beim Laden der Mitgliedsdaten</div>';
-        }
-    });
+                    </div>`;
+            } catch (e) {
+                contentContainer.innerHTML = '<div class="alert alert-danger">Fehler beim Laden der Mitgliedsdaten</div>';
+            }
+        });
+    })();
 </script>
