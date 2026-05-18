@@ -13,6 +13,7 @@ const membership = {
   },
   async addMembership(request, response) {
     logger.debug("Adding new Membership to DB");
+    
     const membership = {
       lastname: request.body.lastName,
       firstname: request.body.firstName,
@@ -34,8 +35,18 @@ const membership = {
       newsletter: request.body.privacy2
     }
 
-    await userStore.addUser(membership);
-    response.redirect("/");
+    const newUser = await userStore.addUser(membership);
+    if (newUser) {
+      response.status(200).json({
+        success: true,
+        user: newUser
+      });
+    } else {
+      response.status(500).json({
+        success: false,
+        message: "Error adding membership. Please try again later."
+      });
+    }
   }
 };
 

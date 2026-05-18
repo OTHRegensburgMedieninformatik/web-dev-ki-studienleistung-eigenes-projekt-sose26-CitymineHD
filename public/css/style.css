@@ -181,3 +181,7 @@ body {
     color: #1a3a1a; /* Dunkelgrün passend zum Fußball-Thema */
     margin-bottom: 15px;
 }
+
+.hidden {
+    display: none !important;
+}

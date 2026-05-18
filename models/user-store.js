@@ -48,8 +48,12 @@ const userStore = {
 
             const values_apply_status = [acc.rows[0].id, 0];
             await dataStoreClient.query(query_apply_status, values_apply_status);
+
+            return user;
         } catch (e) { 
-            logger.error("Error adding user", e); 
+            logger.error("Error adding user", e);
+            
+            return undefined;
         } 
     },
 
