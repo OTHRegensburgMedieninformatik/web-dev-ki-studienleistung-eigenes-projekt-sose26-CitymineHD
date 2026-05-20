@@ -72,7 +72,7 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th style="padding: 10px; text-align: center;">Mitgliedsstatus</th>
+                                    <th style="padding: 10px; text-align: center;"><h5>Mitgliedsstatus</h5></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,6 +82,24 @@
                             </tbody>
                         </table>
                     </div>
+                    {{#if userPositions}}
+                    <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="padding: 10px; text-align: center;"><h5>Deine Positionen</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each userPositions}}
+                                <tr>
+                                    <td style="text-align: center;"><strong>{{position_group}}</strong> - {{position}}</td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    {{/if}}
                 </div>
             </div>
             {{#if isAdmin}}

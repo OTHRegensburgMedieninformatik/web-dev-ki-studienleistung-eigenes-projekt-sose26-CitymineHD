@@ -195,6 +195,23 @@ const userStore = {
         } catch (e) { 
             console.log("Error getting all Teams including staff", e); 
         }
+    },
+
+    async getUserPosition(userId) {
+        logger.info('Getting User Position ${userId}');
+        const query = 'SELECT position, replace(position_group, \'_\', \'-\') as position_group FROM project.personal where id=$1';
+        const values = [userId];
+        
+        try {
+            const dbRes = await dataStoreClient.query(query, values);
+            if (dbRes.rows[0] !== undefined) { 
+                return dbRes.rows;
+            } else { 
+                return undefined; 
+            }
+        } catch (e) {
+            console.log("Error getting user position", e);
+        }
     }
 }; 
  
