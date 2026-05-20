@@ -38,9 +38,15 @@ const accounts = {
             request.session.user = user.username;
             request.session.role = user.role;
             logger.info("User successfully authenticated and added to session", user);
-            response.redirect("/");
+
+            response.status(200).json({
+                success: true,
+            })
         } else {
-            response.redirect("/");
+            response.status(500).json({
+                success: false,
+                message: "Invalid username or password"
+            })
         }
     },
 
