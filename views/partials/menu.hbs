@@ -62,20 +62,23 @@
       </form>
     </div>
     <div class="modal fade" id="modalLogin" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header d-flex justify-content-center">
             <h5 class="modal-title">Login</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
           </div>
           <div class="modal-body text-center d-flex flex-column align-items-center">
-            <form action="/verein/authenticate" method="post">
+            <form>
               <label for="username">Benutzername</label>
               <input type="input" class="form-control" id="username" name="username" placeholder="Benutzername">
               <label for="password">Password</label>
               <input type="input" class="form-control" id="password" name="password" placeholder="Password">
               <div id="error-box" class="alert alert-danger d-none" role="alert"></div>
-              <button type="submit" class="btn btn-psc-yellow m-3">Anmelden</button>
+              <div style="display: flex; justify-content: center; width: 100%;">
+                <button type="submit" class="btn btn-psc-yellow m-3">Anmelden</button>
+              </div>
+              <div id="modal-body-error"></div>
             </form>
           </div>
           <div class="modal-footer">
@@ -89,4 +92,32 @@
 
 <script>
   $("#{{id}}").addClass("active");  
+</script>
+
+<script>
+  const memberModal = document.getElementById('modalLogin');
+  const contentContainer = document.getElementById('modal-body-error');
+
+  memberModal.querySelector('form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formElement = event.target; 
+        const formData = new FormData(formElement);
+
+        const response = await fetch('/verein/authenticate', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(Object.fromEntries(formData.entries()))
+        });
+
+        if (!response.ok){
+          contentContainer.innerHTML = `
+              <p class="text-danger">Ungültiger Benutzername oder Passwort.</p>
+          `;
+        } else {
+          location.reload();
+        }
+  });
 </script>
