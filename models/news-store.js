@@ -1,7 +1,6 @@
 const dataStore = require("./data-store.js"); 
 const dataStoreClient = dataStore.getDataStore(); 
 const logger = require("../utils/logger.js"); 
-const { addNewsArticle } = require("../controllers/news.js");
 
 const newsStore = { 
   async getAllNewsArticle() { 

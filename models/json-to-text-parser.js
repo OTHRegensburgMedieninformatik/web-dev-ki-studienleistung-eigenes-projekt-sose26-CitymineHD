@@ -1,16 +1,31 @@
+const { level } = require("winston");
+
 const parser = {
     parse(article) {
         article = JSON.parse(article);
-        const blocks = article.article_body || article;
+        const blocks = article.article_body || article.blocks;
+
+        console.log(blocks);
 
         let content = "";
+        let level = 0;
+        let text = "";
         blocks.forEach(element => {
+            console.log(element);
             switch (element.type) {
                 case "paragraph":
-                    content += "<p>" + element.text + "</p>\n";
+                    text = element.text || element.data.text;
+                    content += "<p>" + text + "</p>\n";
                     break;
                 case "heading":
-                    content += "<h" + element.level + ">" + element.text + "</h" + element.level + ">\n";
+                    level = element.level || element.data.level;
+                    text = element.text || element.data.text;
+                    content += "<h" + level + ">" + text + "</h" + level + ">\n";
+                    break;
+                case "header":
+                    level = element.level || element.data.level;
+                    text = element.text || element.data.text;
+                    content += "<h" + level + ">" + text + "</h" + level + ">\n";
                     break;
                 case "image":
                     content += "<img src=" + element.url + " alt=" + element.caption + ">\n";

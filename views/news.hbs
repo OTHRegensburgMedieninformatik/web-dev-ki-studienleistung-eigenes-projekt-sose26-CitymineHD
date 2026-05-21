@@ -11,9 +11,9 @@
                 <div class="card-body">
                     <h3 class="card-title">{{title}}</h3>
                     <p class="card-text">{{description}}</p>
-                    <button type="button" class="btn-psc-blue" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#modal{{@index}}">
-                        <p class="card-text">Mehr erfahren>></p>
-                    </button>
+                    <p style="margin-top: auto; weight: 100%;">
+                        <a type="button" class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modal{{@index}}">Entdecken &raquo;</a>
+                    </p>
               </div>
             </div>
             {{> pop_up_news modalId=@index isAdmin=../isAdmin}}
@@ -21,9 +21,9 @@
     </div>
     <div class="position-sticky text-end pb-3 pr-3">
         {{#if isAdmin}}
-        <button type="button" class="btn-psc-blue" data-bs-toggle="modal" data-bs-target="#add">
-            <p class="card-text">Artikel hinzufügen</p>
-        </button>
+        <p style="weight: 100%;">
+            <a type="button" class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#add">Artikel hinzufügen &raquo;</a>
+        </p>
         {{/if}}
     </div>
     {{> pop_up_add_edit_article modalId="add"}}
