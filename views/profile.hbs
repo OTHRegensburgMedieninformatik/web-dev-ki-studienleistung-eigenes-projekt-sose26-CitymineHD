@@ -161,6 +161,168 @@
                 </div>
             </div>
             {{/if}}
+            {{#if isAdmin}}
+            <div class="panel" style="margin-top: 20px;"> 
+                <div class="bg-psc-yellow text-center" style="border-radius: 10px; padding: 20px;">
+                    <h2>Newsverwaltung</h2>
+                </div>
+                <div class="panel-body text-center bg-light" style="border-radius: 10px; padding: 20px;">
+                    <div class="row d-flex">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Beschreibung</th>
+                                    <th>Bild</th>
+                                    <th>Aktion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each news}}
+                                <tr>
+                                    <td style="text-align: center;">{{title}}</td>
+                                    <td style="text-align: center;">{{description}}</td>
+                                    <td><img src="{{src_img}}" alt="Bild" style="width: 60px; height: 60px;"></td>
+                                    <td style="text-align: center;">
+                                        <a class="btn btn-psc-blue" onclick="openEditor('{{id}}', '{{content}}')" data-bs-toggle="modal" data-bs-target="#add{{id}}"><i class="bi bi-pencil-square"></i></a>
+                                        <a class="btn btn-psc-blue" href="/news/deleteNews/{{id}}"><i class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+                                {{> pop_up_add_edit_article modalId="add{{id}}"id=id title=title description=description src_img=src_img content=content}}
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                        <p style="weight: 100%; margin-top: 30px;">
+                            <a type="button" class="btn btn-psc-blue" onclick="openEditor()" data-bs-toggle="modal" data-bs-target="#add">Artikel hinzufügen &raquo;</a>
+                        </p>
+                        {{> pop_up_add_edit_article modalId="add"}}
+                    </div>
+                </div>
+            </div>
+            {{/if}}
         </div>
     </div>
 </body>
+{{#if isAdmin}}
+<script>
+  let currentEditor = null;
+  function openEditor(id = null, content = null) {
+    class Image {
+      static get toolbox() {
+        return {
+          title: 'Image',
+          icon: '<svg width="17" height="15" viewBox="0 0 336 276" xmlns="http://www.w3.org/2000/svg"><path d="M291 150V79c0-19-15-34-34-34H79c-19 0-34 15-34 34v42l67-44 81 72 56-29 42 30zm0 52l-43-30-56 30-81-67-66 39v23c0 19 15 34 34 34h178c17 0 31-13 34-29zM79 0h178c44 0 79 35 79 79v118c0 44-35 79-79 79H79c-44 0-79-35-79-79V79C0 35 35 0 79 0z"/></svg>'
+        };
+      }
+      constructor({data}) {
+        this.data = data;
+      }
+
+      render(){
+        return document.createElement('input');
+      }
+
+      save(blockContent){
+        return {
+          url: blockContent.value
+        }
+      }
+    }
+
+    let data = null;
+    if (content != null && content !== "") {
+      data = JSON.parse(content);
+    }
+
+    if (currentEditor) {
+      currentEditor.destroy();
+      currentEditor = null;
+    }
+
+    const editor = new EditorJS({
+      holder: 'editorjs' + (id ? '-' + id : '-'),
+      placeholder: 'Hier kannst du deinen Artikel verfassen...',
+
+      data: data,
+      
+      tools: {
+        color: {
+          class: window.ColorPicker.default,
+        },
+        paragraph: {
+          class: Paragraph,
+          inlineToolbar: ['bold', 'italic', 'color'],
+          config: {
+            placeholder: 'Text eingeben...',
+          }
+        },
+        header: {
+          class: Header,
+          inlineToolbar: ['bold', 'italic', 'color'],
+          config: {
+            placeholder: 'Überschrift eingeben...',
+            levels: [2, 3, 4],
+            defaultLevel: 2,
+          }
+        },
+        checklist: {
+          class: Checklist,
+          inlineToolbar: ['bold', 'italic', 'color'],
+          config: {
+            placeholder: 'Aufgabe eingeben...'
+          }
+        },
+        list: {
+          class: List,
+          inlineToolbar: ['bold', 'italic', 'color'],
+          config: {
+            placeholder: 'Listelement eingeben...',
+            defaultStyle: 'unordered'
+          }
+        },
+      },
+    });
+    currentEditor = editor;
+  }
+
+  function destroyEditor() {
+    if (currentEditor) {
+      currentEditor.destroy();
+      currentEditor = null;
+    }
+  }
+
+  function save(id = null) {
+    currentEditor.save().then(async (outputData) => {
+      const data = {
+        title: document.getElementById('title-' + id).value,
+        description: document.getElementById('description-' + id).value,
+        src_img: document.getElementById('src_img-' + id).value,
+        content: outputData
+      };
+
+      let url = '/news/addNews';
+
+      if (id != null && id !== "") {
+        url = '/news/editNews/' + id;
+      }
+
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+      } catch (e) {
+          console.log('Saving failed: ', e);
+      }
+      destroyEditor();
+
+      window.location.assign('/profile');s
+    });
+  }
+</script>
+{{/if}}

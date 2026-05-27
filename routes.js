@@ -46,6 +46,7 @@ router.get("/department/tennis", tennis.index);
 
 router.get("/news/deleteNews/:id", auth.protected, news.deleteNewsArticle);
 router.post("/news/addNews", auth.protected, news.addNewsArticle);
+router.post("/news/editNews/:id", auth.protected, news.editNewsArticle);
 
 router.post("/verein/authenticate", accounts.authenticate);
 router.get("/verein/logout", accounts.logout);

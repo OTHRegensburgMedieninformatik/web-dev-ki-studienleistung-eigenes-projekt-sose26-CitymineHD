@@ -19,24 +19,51 @@ const news = {
       isAdmin: request.session.user && request.session.role === 'admin',
       isLogin: request.session.user
     };
-    console.log(request.session)
     response.render("news", viewData);
   },
   async deleteNewsArticle(request, response) {
       const id = request.params.id;
-      console.log(id);
-      logger.debug("Deleting News Article ${id}");
+      logger.info("Deleting News Article ${id}");
       await newsStore.deleteNewsArticle(id);
-      response.redirect("/news/");
+      response.redirect("/profile");
   },
   async renderPreview(request, response) {
 
   },
   async addNewsArticle(request, response) {
-    logger.debug("Adding new News Article to DB");
-    console.log(request);
-    await newsStore.addNewsArticle(request.session.userId, request.body.title, request.body.description, request.body.src_img, request.body.content);
-    response.redirect("/news/");
+    logger.info("Adding new News Article to DB");
+    const articleStatus = await newsStore.addNewsArticle(request.session.userId, request.body.title, request.body.description, request.body.src_img, request.body.content);
+
+    if (articleStatus) {
+      response.status(200).json({
+        success: true,
+        message: "News article added successfully."
+      });
+    } else {
+      response.status(500).json({
+        success: false,
+        message: "Error adding news article. Please try again later."
+      });
+    }
+  },
+
+  async editNewsArticle(request, response) {
+    logger.info("Editing News Article with id ${id}");
+    const id = request.params.id;
+
+    const articleStatus = await newsStore.editNewsArticle(id, request.body.title, request.body.description, request.body.src_img, request.body.content);
+
+    if (articleStatus) {
+      response.status(200).json({
+        success: true,
+        message: "News article added successfully."
+      });
+    } else {
+      response.status(500).json({
+        success: false,
+        message: "Error adding news article. Please try again later."
+      });
+    }
   }
 };
 
