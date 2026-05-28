@@ -2,6 +2,7 @@ const logger = require("../utils/logger.js");
 const newsStore = require("../models/news-store.js");
 const myparser = require("../models/json-to-text-parser.js");
 const edjsParser = require("editorjs-parser");
+const multer = require("multer");
 
 const news = {
   async index(request, response) {
@@ -32,7 +33,13 @@ const news = {
   },
   async addNewsArticle(request, response) {
     logger.info("Adding new News Article to DB");
-    const articleStatus = await newsStore.addNewsArticle(request.session.userId, request.body.title, request.body.description, request.body.src_img, request.body.content);
+
+    let img = null;
+    if (request.file != undefined) {
+      img = "/src/news/" + request.file.filename;
+    }
+    
+    const articleStatus = await newsStore.addNewsArticle(request.session.userId, request.body.title, request.body.description, img, request.body.content);
 
     if (articleStatus) {
       response.status(200).json({
@@ -51,7 +58,14 @@ const news = {
     logger.info("Editing News Article with id ${id}");
     const id = request.params.id;
 
-    const articleStatus = await newsStore.editNewsArticle(id, request.body.title, request.body.description, request.body.src_img, request.body.content);
+    let file = request.body.existing_src_img; // Default to existing image if no new image is uploaded
+    if (request.file != undefined) {
+      file = "/src/news/" + request.file.filename
+    }
+
+    console.log(file);
+
+    const articleStatus = await newsStore.editNewsArticle(id, request.body.title, request.body.description, file, request.body.content);
 
     if (articleStatus) {
       response.status(200).json({

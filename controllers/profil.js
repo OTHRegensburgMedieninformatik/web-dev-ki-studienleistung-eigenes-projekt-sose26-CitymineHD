@@ -13,8 +13,6 @@ const home = {
         const allAllMembers = await userStore.getAllUsers();
         const news = await newsStore.getAllNewsArticle();
 
-        console.log(news)
-
         const viewData = {
         title: "Profil",
         isLogin: request.session.user,
