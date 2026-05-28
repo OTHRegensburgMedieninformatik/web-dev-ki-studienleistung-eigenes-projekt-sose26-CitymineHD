@@ -1,5 +1,6 @@
 const logger = require("../utils/logger.js");
 const userStore = require("../models/user-store.js");
+const newsStore = require("../models/news-store.js");
 
 const home = {
     async index(request, response) {
@@ -10,6 +11,7 @@ const home = {
         const applyStatus = await userStore.getUserApplyStatus(user);
         const applys = await userStore.getAllUserApplys();
         const allAllMembers = await userStore.getAllUsers();
+        const news = await newsStore.getAllNewsArticle();
 
         const viewData = {
         title: "Profil",
@@ -19,7 +21,8 @@ const home = {
         userPositions: userPositions,
         applyStatus: applyStatus.status == 0 ? "<span class=\"yellow-dot\"></span> In Prüfung" : applyStatus.status == 1 ? "<span class=\"green-dot\"></span> Mitglied" : applyStatus.status == 2 ? "<span class=\"red-dot\"></span> Abgelehnt" : "<span class=\"grey-dot\"></span> Unbekannt",
         applys: applys,
-        allMembers: allAllMembers
+        allMembers: allAllMembers,
+        news: news
         };
         response.render("profile", viewData);
     },

@@ -1,35 +1,38 @@
-<div class="modal fade" id="add" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="add{{id}}" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header d-flex justify-content-center">
         <h5 class="modal-title">{{title}}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+        <button type="button" class="btn-close" onclick="destroyEditor()" data-bs-dismiss="modal" aria-label="Schließen"></button>
       </div>
-      <div class="modal-body text-center d-flex flex-column align-items-center">
-        <form action="/news/addNews" method="post">
-            <div class="row">
-                <div class="mb-3 col-4">
-                    {{!-- <label htmlFor="inputTitle" className="form-label">Title</label> --}}
-                    <input placeholder="Title" type="text" className="form-control" id="Title" name="title">
-                </div>
-                <div class="mb-3 col-4">
-                    {{!-- <label htmlFor="inputTitle" className="form-label">Beschreibung</label> --}}
-                    <input placeholder="Beschreibung" type="text" className="form-control" id="description" name="description">
-                </div>
-                <div class="mb-3 col-4">
-                    {{!-- <label htmlFor="inputTitle" className="form-label">Titlebild</label> --}}
-                    <input placeholder="Titlebild" type="text" className="form-control" id="title_img" name="title_img">
-                </div>
-            </div>
-            <div class="row">
-                <textarea class="form-control" id="content" name="content" rows="12">Artikel</textarea>
-            </div>
-            <button type="submit" class="btn btn-psc-yellow mt-3">Vorschau</button>
-            <button type="submit" class="btn btn-psc-yellow mt-3">Artikel hinzufügen</button>
-        </form>
+      <div class="modal-body">
+        <div class="bg-psc-yellow centered_text" style="margin: 20px;">
+          <h5>Neuen News Artikel hinzufügen</h5>
+        </div>
+
+        <div class="row" style="display: flex; justify-content: center;">
+          <div class="col-3">
+            <input type="text" class="form-control mb-3" id="title-{{id}}" placeholder="Titel" value="{{title}}">
+          </div>
+          <div class="col-3">
+            <input type="text" class="form-control mb-3" id="description-{{id}}" placeholder="Beschreibung" value="{{description}}">
+          </div>
+          <div class="col-3">
+            <input type="file" class="form-control mb-3" id="src_img-{{id}}" placeholder="Bild URL" value="{{src_img}}">
+          </div>
+        </div>
+
+        <div id="id-bridge" style="display: none;">{{{id}}}</div>
+        <div id="content-bridge" style="display: none;">{{{content}}}</div>
+
+        <div id="editorjs-{{id}}" style="overflow-y: auto; background-color: #f8f9fa; border: 1px solid #ced4da;"></div>
+
+        <div class="mt-3" style="display: flex; justify-content: center;">
+          <button class="btn btn-psc-yellow" onclick="save('{{id}}', '{{src_img}}')">Artikel speichern</button>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-psc-yellow" data-bs-dismiss="modal">Schließen</button>
+        <button type="button" class="btn btn-psc-yellow" onclick="destroyEditor()" data-bs-dismiss="modal">Schließen</button>
       </div>
     </div> 
   </div>

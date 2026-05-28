@@ -1,5 +1,6 @@
 const express = require("express");
 const auth = require("./utils/auth.js");
+const multer = require("multer");
 const router = express.Router();
 
 const home = require("./controllers/home.js");
@@ -21,6 +22,12 @@ const tennis = require("./controllers/department/tennis.js");
 const accounts = require("./controllers/accounts.js");
 const profil = require("./controllers/profil.js");
 const profil_edit = require("./controllers/profil-edit.js");
+
+
+
+const upload = multer({dest: "public/src/news/"});
+
+
 
 router.get("/", home.index);
 router.get("/news", news.index);
@@ -45,7 +52,8 @@ router.get("/department/stockschuetzen", stockschuetzen.index);
 router.get("/department/tennis", tennis.index);
 
 router.get("/news/deleteNews/:id", auth.protected, news.deleteNewsArticle);
-router.post("/news/addNews", auth.protected, news.addNewsArticle);
+router.post("/news/addNews", auth.protected, upload.single("src_img"), news.addNewsArticle);
+router.post("/news/editNews/:id", auth.protected, upload.single("src_img"), news.editNewsArticle);
 
 router.post("/verein/authenticate", accounts.authenticate);
 router.get("/verein/logout", accounts.logout);

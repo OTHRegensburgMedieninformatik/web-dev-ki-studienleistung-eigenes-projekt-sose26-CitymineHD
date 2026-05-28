@@ -1,7 +1,6 @@
 const dataStore = require("./data-store.js"); 
 const dataStoreClient = dataStore.getDataStore(); 
 const logger = require("../utils/logger.js"); 
-const { addNewsArticle } = require("../controllers/news.js");
 
 const newsStore = { 
   async getAllNewsArticle() { 
@@ -13,6 +12,7 @@ const newsStore = {
       logger.error("Error fetching all news articles", e); 
     }
   },
+
   async deleteNewsArticle(id) {
     const query = 'delete from project.news where id=$1';
     try {
@@ -21,12 +21,22 @@ const newsStore = {
       logger.error("Error deleting news article", e);
     }
   },
+
   async addNewsArticle(id, title, description, title_img, content) {
     const query = 'insert into project.news(author, title, description, src_img, content) values($1, $2, $3, $4, $5)';
     try {
       await dataStoreClient.query(query, [id, title, description, title_img, content]);
     } catch(e) {
       logger.error("Error while adding new News Article", e);
+    }
+  },
+
+  async editNewsArticle(id, title, description, title_img, content) {
+    const query = 'update project.news set title=$1, description=$2, src_img=$3, content=$4 where id=$5';
+    try {
+      await dataStoreClient.query(query, [title, description, title_img, content, id]);
+    } catch(e) {
+      logger.error("Error while editing News Article", e);
     }
   }
 }
