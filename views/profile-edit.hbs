@@ -71,6 +71,19 @@
                         </div>
                         <button type="submit" class="btn btn-psc-blue" style="margin-top: 20px;">Änderungen speichern</button>
                     </form>
+                    <form id="passwordForm" data-user-id={{userProfile.id}}>
+                        <div class="col" style="margin: 20px; margin-top:40px;">
+                            <input type="password" id="currentPassword" name="currentPassword" placeholder="Aktuelles Passwort">
+                        </div>
+                        <div class="col" style="margin: 20px;">
+                            <input type="password" id="newPassword" name="newPassword" placeholder="Neues Passwort">
+                        </div>
+                        <div class="col" style="margin: 20px;">
+                            <input type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Neues Passwort bestätigen">
+                        </div>
+                        <button type="submit" class="btn btn-psc-blue">Passwort ändern</button>
+                        <div id="passwordError" role="alert" style="margin: 20px;"></div>
+                    </form>
                     <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
                         <table>
                             <thead>
@@ -87,66 +100,39 @@
                     </div>
                 </div>
             </div>
-            {{#if isAdmin}}
-            <div class="panel" style="margin-top: 20px;"> 
-                <div class="bg-psc-yellow text-center" style="border-radius: 10px; padding: 20px;">
-                    <h2>Mitgliederverwaltung</h2>
-                </div>
-                <div class="panel-body text-center bg-light" style="border-radius: 10px; padding: 20px;">
-                    <div class="row d-flex">
-                        <div class="col-md-6">
-                            <h5 style="text-decoration: underline;">Neue Anträge</h5>
-                             <table style="width: 100%; table-layout: fixed;">
-                                <thead>
-                                    <tr>
-                                        <th style="padding: 10px; text-align: center;">Vorname</th>
-                                        <th style="padding: 10px; text-align: center;">Nachname</th>
-                                        <th style="padding: 10px; text-align: center;">Aktion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{#each applys}}
-                                    <tr>
-                                        <td style="text-align: center;">{{firstname}}</td>
-                                        <td style="text-align: center;">{{lastname}}</td>
-                                        <td style="text-align: center;"><a class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modal{{user_id}}">Bearbeiten</a></td>
-                                    </tr>
-                                    {{/each}}
-                                </tbody>
-                             </table>
-                        </div>
-                        {{#each applys}}
-                        {{> pop_up_edit_member modalId=user_id firstname=firstname lastname=lastname birthday=birthday postcode=postcode mail=mail address=address city=city phone=phone handy=handy applyStatus=status}}
-                        {{/each}}
-                         <div class="col-md-6">
-                            <h5 style="text-decoration: underline;">Mitglieder</h5>
-                            <table style="width: 100%; table-layout: fixed;">
-                                <thead>
-                                    <tr>
-                                        <th style="padding: 10px; text-align: center;">Vorname</th>
-                                        <th style="padding: 10px; text-align: center;">Nachname</th>
-                                        <th style="padding: 10px; text-align: center;">Aktion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{#each allMembers}}
-                                    <tr>
-                                        <td style="text-align: center;">{{firstname}}</td>
-                                        <td style="text-align: center;">{{lastname}}</td>
-                                        <td style="text-align: center;"><a class="btn btn-psc-blue" data-bs-toggle="modal" data-bs-target="#modal{{user_id}}">Bearbeiten</a></td>
-                                    </tr>
-                                    {{/each}}
-                                </tbody>
-                             </table>
-                        </div>
-                        {{#each allMembers}}
-                        {{> pop_up_edit_member modalId=user_id firstname=firstname lastname=lastname birthday=birthday postcode=postcode mail=mail address=address city=city phone=phone handy=handy applyStatus=status}}
-                        {{/each}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{/if}}
         </div>
     </div>
 </body>
+
+<script>
+  const contentContainerPassword = document.getElementById('passwordError');
+
+  document.getElementById('passwordForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const formElement = event.target; 
+        const formData = new FormData(formElement);
+
+        const userId = formElement.dataset.userId;
+        
+        try {
+            const response = await fetch(`/profile/editPassword/${userId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(Object.fromEntries(formData.entries()))
+            });
+            
+            if (response.ok){
+                location.reload();
+            } else {
+                contentContainerPassword.innerHTML = `
+                    <p class="text-danger">Passwordänderung fehlgeschlagen!</p>
+                `;
+            }
+        } catch (e) {
+          console.log("Error while changing password", e);
+        }
+  });
+</script>

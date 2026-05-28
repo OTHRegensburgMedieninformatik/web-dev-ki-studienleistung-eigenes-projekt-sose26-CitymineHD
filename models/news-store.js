@@ -4,7 +4,7 @@ const logger = require("../utils/logger.js");
 
 const newsStore = { 
   async getAllNewsArticle() { 
-    const query = 'SELECT * FROM project.news'; 
+    const query = 'SELECT * FROM project.news order by id desc'; 
     try { 
       let result = await dataStoreClient.query(query); 
       return result.rows; 

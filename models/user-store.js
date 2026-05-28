@@ -212,7 +212,34 @@ const userStore = {
         } catch (e) {
             console.log("Error getting user position", e);
         }
+    },
+
+    async changeUserPassword(userId, currentPassword, newPassword) {
+        logger.info('Changing password for User', userId);
+        const query_get = 'SELECT password, salt FROM project.account WHERE id=$1';
+        const values_get = [userId];
+
+        try {
+            const dbRes_get = await dataStoreClient.query(query_get, values_get);
+
+            if (!crypto.verifyPassword(currentPassword, dbRes_get.rows[0].password, dbRes_get.rows[0].salt)) {
+                return undefined;
+            }
+
+            const {hash, salt} = crypto.hashPassword(newPassword);
+
+            const query_set = 'Update project.account set password=$1, salt=$2 where id=$3';
+            const values_set = [hash, salt, userId];
+
+            const dbRes_set = await dataStoreClient.query(query_set, values_set);
+            
+            return true;
+        } catch (e) {
+            console.log("Error while updating users password", e);
+            
+            return undefined;
+        }
     }
 }; 
  
-module.exports = userStore; 
+module.exports = userStore;

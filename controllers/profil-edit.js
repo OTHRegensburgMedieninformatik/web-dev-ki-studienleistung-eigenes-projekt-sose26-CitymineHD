@@ -44,6 +44,38 @@ const home = {
         };
         await userStore.updateUserProfile(userId, updatedData);
         response.redirect("/profile");
+    },
+
+    async changePassword(request, response) {
+        logger.info(`Changing password for user with id ${request.params.id}`);
+
+        const userId = request.params.id;
+        const currentPassword = request.body.currentPassword;
+        const newPassword = request.body.newPassword;
+        const confirmPassword = request.body.confirmNewPassword;
+
+        if (newPassword !== confirmPassword) {
+            response.status(400).json({
+                success: false,
+                message: "New password and confirm password do not match."
+            });
+            return;
+        }
+
+        const dbResponse = await userStore.changeUserPassword(userId, currentPassword, newPassword);
+
+        if (dbResponse == undefined) {
+            response.status(500).json({
+                success: false,
+                message: "Error changing password"
+            });
+        } else {
+            request.session.destroy();
+            response.status(200).json({
+                success: true,
+                message: "Password changed successfully."
+            });
+        }
     }
 };
 

@@ -209,7 +209,7 @@
   let currentEditor = null;
   function openEditor(id = null, content = null) {
     let data = null;
-    if (content != null && content !== "") {
+    if (content != null && content != "") {
       data = JSON.parse(content);
     }
 
