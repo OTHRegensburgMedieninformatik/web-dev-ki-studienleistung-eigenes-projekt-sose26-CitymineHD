@@ -30,7 +30,18 @@ const home = {
     async editMember(request, response) {
         const userId = request.params.id;
         const newStatus = request.body.status;
+
+        console.log(userId);
+        console.log(newStatus);
         await userStore.updateUserStatus(userId, newStatus);
+
+        const position = request.body.position;
+        const positionGroup = request.body.positionGroup;
+
+        if (position && positionGroup) {
+            await userStore.addUserPosition(userId, position, positionGroup, '/psc_logo.png');
+        }
+
         response.redirect("/profile");
     },
 
@@ -38,8 +49,16 @@ const home = {
         const userId = request.params.user_id;
 
         const userDetails = await userStore.getUserById(userId);
+        const userPositions = await userStore.getUserPosition(userId);
 
-        response.json(userDetails);
+        console.log(userDetails);
+
+        response.json({userDetails, userPositions})
+    },
+
+    async deletePosition(request, response) {
+        const userId = request.params.id;
+        
     }
 };
 

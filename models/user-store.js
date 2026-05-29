@@ -174,9 +174,9 @@ const userStore = {
 
     async getTeams() {
         logger.info("Getting all Teams including staff");
-        const queryG = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'G_Jugend\'';
-        const queryF = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'F_Jugend\'';
-        const queryE = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'E_Jugend\'';
+        const queryG = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'fTrainerG\'';
+        const queryF = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'fTrainerF\'';
+        const queryE = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'fTrainerE\'';
 
         try {
             const G_Jugend = await dataStoreClient.query(queryG);
@@ -216,6 +216,7 @@ const userStore = {
 
     async changeUserPassword(userId, currentPassword, newPassword) {
         logger.info('Changing password for User', userId);
+        
         const query_get = 'SELECT password, salt FROM project.account WHERE id=$1';
         const values_get = [userId];
 
@@ -238,6 +239,28 @@ const userStore = {
             console.log("Error while updating users password", e);
             
             return undefined;
+        }
+    },
+
+    async addUserPosition(userId, positions, position_group, img) {
+        const query = 'INSERT INTO project.personal (id, position, position_group, src_img) VALUES ($1, $2, $3, $4)';
+        const values = [userId, positions, position_group, img];
+
+        try {
+            await dataStoreClient.query(query, values);
+        } catch (e) {
+            console.log("Error while adding user position", e);
+        }
+    },
+
+    async deleteUserPosition(userId, position, position_group) {
+        const query = 'DELETE FROM project.personal WHERE id=$1 AND position=$2 AND position_group=$3';
+        const values = [userId, position, position_group];
+
+        try {
+            await dataStoreClient.query(query, values);
+        } catch (e) {
+            console.log("Error while deleting user position", e);
         }
     }
 }; 

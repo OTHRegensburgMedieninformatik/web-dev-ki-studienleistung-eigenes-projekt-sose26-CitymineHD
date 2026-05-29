@@ -5,17 +5,114 @@
                 <h5 class="modal-title">Mitglied bearbeiten</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#modal{{user_id}}" aria-label="Schließen"></button>
             </div>
-            <div class="modal-body text-center d-flex flex-column align-items-center" id="body-{{user_id}}"></div>
-                
+            <div class="modal-body text-center d-flex flex-column align-items-center" id="body-{{user_id}}">
+                <h5>Mitgliedsdetails</h5>
+                <div class="row d-flex"> 
+                    <div class="col-md-6">
+                        <table style="width: 100%; table-layout: fixed;">
+                            <tr>
+                                <td style="width: 120px; vertical-align: top;"><strong>Vorname:</strong></td>
+                                <td dataField="firstName"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Geburtstag:</strong></td>
+                                <td dataField="birthday"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Postleitzahl:</strong></td>
+                                <td dataField="postcode"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>E-Mail:</strong></td>
+                                <td dataField="mail"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <table style="width: 100%; table-layout: fixed;">
+                            <tr>
+                                <td style="width: 120px;"><strong>Nachname:</strong></td>
+                                <td dataField="lastName"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Adresse:</strong></td>
+                                <td dataField="address"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ort:</strong></td>
+                                <td dataField="city"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Telefon:</strong></td>
+                                <td dataField="phone"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Handy:</strong></td>
+                                <td dataField="handy"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <form action="/profile/editMember/{{user_id}}" method="POST">
+                    <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="padding: 10px; text-align: center;">Mitgliedsstatus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: center;">                
+                                    <select class="form-select" style="margin-right: 10px;" id="status" name="status">
+                                        <option value="1">Mitglied</option>
+                                        <option value="0">Prüfung</option>
+                                        <option value="2">Abgelehnt</option>
+                                    </select></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h4>Position hinzufügen</h4>
+                    <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="padding: 10px; text-align: center;"><h5>Deine Positionen</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody id="positionTable{{user_id}}">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="display: flex; flex-direction: row;">
+                        <input type="text" id="position" name="position" placeholder="Position" style="margin-right: 10px;">
+                        <select class="form-select" style="margin-right: 10px;" id="positionGroup" name="positionGroup">
+                            <option value="leading">Vorstandschaft</option>
+                            <option value="committee">Ausschuss</option>
+                            <option value="bAbtLeading">Abteilungsleitung Breitensport</option>
+                            <option value="bCommittee">Ausschuss-Breitensport</option>
+                            <option value="bTrainer">Trainer Breitensport</option>
+                            <option value="fAbtLeading">Abteilungsleitung Fußball</option>
+                            <option value="fCommittee">Ausschuss-Fußball</option>
+                            <option value="fTrainerE">Trainer E-Jugend</option>
+                            <option value="fTrainerF">Trainer F-Jugend</option>
+                            <option value="fTrainerG">Trainer G-Jugend</option>
+                            <option value="tAbtLeading">Abteilungsleitung Tennis</option>
+                            <option value="sCommittee">Ausschuss Stockschützen</option>
+                            <option value="sAbtLeading">Abteilungsleitung Stockschützen</option>
+                            <option value="tCommittee">Ausschuss Tennis</option>
+                            <option value="tTrainerH">Trainer Herren Tennis</option>
+                            <option value="tTrainerK">Trainer Kinder Tennis</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-center" style="margin: 30px;">
+                        <button type="submit" class="btn btn-psc-yellow">Position hinzufügen</button>
+                    </div>
+                </form> 
+            </div>
             <div class="modal-footer d-flex justify-content-end">
-                <form class="d-flex" style="margin-right: 30px" action="/profile/editMember/{{user_id}}" method="post">
-                    <select class="form-select" style="margin-right: 10px;" id="status" name="status">
-                        <option value="1">Mitglied</option>
-                        <option value="0">Prüfung</option>
-                        <option value="2">Abgelehnt</option>
-                    </select>
-                    <button type="submit" class="btn btn-psc-yellow">Speichern</button>
-                </form>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#modal{{user_id}}">Schließen</button>
             </div>
         </div>

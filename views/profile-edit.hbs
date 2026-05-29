@@ -22,6 +22,7 @@
                     <h2>Deine Mitgliedschaft</h2>
                 </div>
                 <div class="panel-body text-center bg-light" style="border-radius: 10px; padding: 20px;">
+                    <h5 style="margin-top: 20px; margin-bottom: 40px;">Persönliche Informationen</h5>
                     <form action="/profile/edit/{{userProfile.id}}" method="POST" >
                         <div class="row d-flex">
                             <div class="col-md-6">
@@ -71,6 +72,7 @@
                         </div>
                         <button type="submit" class="btn btn-psc-blue" style="margin-top: 20px;">Änderungen speichern</button>
                     </form>
+                    <h5 style="margin-top: 40px; margin-bottom: 40px;">Passwort ändern</h5>
                     <form id="passwordForm" data-user-id={{userProfile.id}}>
                         <div class="col" style="margin: 20px; margin-top:40px;">
                             <input type="password" id="currentPassword" name="currentPassword" placeholder="Aktuelles Passwort">

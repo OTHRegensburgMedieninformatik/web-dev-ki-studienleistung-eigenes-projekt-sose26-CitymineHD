@@ -40,6 +40,7 @@ router.get("/profile/edit/", auth.protected, profil_edit.index);
 router.post("/profile/edit/:id", auth.protected, profil_edit.update);
 router.get("/profile/memberDetails/:user_id", auth.protected, profil.memberDetails);
 router.post("/profile/editPassword/:id", auth.protected, profil_edit.changePassword);
+router.post("/profile/deletePosition/:id", auth.protected, profil.deletePosition);
 
 router.get("/verein/termine", appointments.index);
 router.get("/verein/anprechpartner", contact.index);

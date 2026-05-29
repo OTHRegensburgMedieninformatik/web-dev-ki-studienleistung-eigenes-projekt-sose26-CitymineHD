@@ -47,7 +47,6 @@ const home = {
     },
 
     async changePassword(request, response) {
-        logger.info(`Changing password for user with id ${request.params.id}`);
 
         const userId = request.params.id;
         const currentPassword = request.body.currentPassword;
