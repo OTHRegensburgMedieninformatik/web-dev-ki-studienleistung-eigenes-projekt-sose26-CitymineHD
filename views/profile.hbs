@@ -6,12 +6,15 @@
             <div class="panel">
                  <div class="panel d-flex flex-column align-items-center bg-psc-yellow" style="border-radius: 10px; padding: 20px">
                     <div class="circle-centered" style="background-image: url(/psc_logo.png); border: 2px solid var(--psc-blue)"></div>
-                    <h1>{{userProfile.firstName}} {{userProfile.lastName}}</h1>
+                    <h2>{{userProfile.firstName}} {{userProfile.lastName}}</h2>
                 </div>
                 <div class="d-flex flex-column">
                     <ul class="nav nav-pills flex-column text-center bg-light" style="display: block; border: 1px solid lightgray; width: 100%; padding: 5px; border-radius: 10px;">
                         <li class="active"><a style="color: black; text-decoration: none;" href="/profile"><i class="bi bi-person"></i> Profile</a></li>
                         <li style="border-top: 1px solid lightgray;"><a style="color: black; text-decoration: none;" href="/profile/edit"><i class="bi bi-pencil-square"></i> Profil bearbeiten</a></li>
+                        {{#if userPositions}}
+                        <li style="border-top: 1px solid lightgray;"><a style="color: black; text-decoration: none;" href="https://www.dropbox.com/scl/fo/oht6jscz0berkveegk29m/AJ3Il1fE2oaJrixonfP9JIU?rlkey=55kwrubiqzjvlgz3oyrhb0jqx&st=6m3em9bh&dl=0" target="_blank"><i class="bi bi-cloud"></i> Cloudbereich</a></li>
+                        {{/if}}
                     </ul>
                 </div>
             </div>
@@ -209,7 +212,7 @@
   let currentEditor = null;
   function openEditor(id = null, content = null) {
     let data = null;
-    if (content != null && content !== "") {
+    if (content != null && content != "") {
       data = JSON.parse(content);
     }
 
@@ -306,74 +309,39 @@
   
   async function openMemberDetails(user_id) {
     const memberModal = document.getElementById('modal' + user_id);
-    const contentContainer = document.getElementById('body-' + user_id);
+    const positionTableContainer = document.getElementById('positionTable' + user_id);
 
     try {
         const response = await fetch(`/profile/memberDetails/${user_id}`);
         const data = await response.json();
 
-        contentContainer.innerHTML = `
-            <div class="row d-flex"> 
-                <div class="col-md-6">
-                    <table style="width: 100%; table-layout: fixed;">
-                        <tr>
-                            <td style="width: 120px; vertical-align: top;"><strong>Vorname:</strong></td>
-                            <td>${data.firstName}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Geburtstag:</strong></td>
-                            <td>${data.birthday}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Postleitzahl:</strong></td>
-                            <td>${data.postcode}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>E-Mail:</strong></td>
-                            <td>${data.mail}</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-6">
-                    <table style="width: 100%; table-layout: fixed;">
-                        <tr>
-                            <td style="width: 120px;"><strong>Nachname:</strong></td>
-                            <td>${data.lastName}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Adresse:</strong></td>
-                            <td>${data.address}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Ort:</strong></td>
-                            <td>${data.city}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Telefon:</strong></td>
-                            <td>${data.phone}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Handy:</strong></td>
-                            <td>${data.handy}</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="padding: 10px; text-align: center;">Mitgliedsstatus</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="text-align: center;">${data.applyStatus}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>`;
+        // [] => Is needed because its not an HTML Tag instead it is an attribute
+        memberModal.querySelectorAll('[dataField]').forEach(element => {
+            const field = element.getAttribute('dataField');
+            element.textContent = data.userDetails[field];
+        });
+
+        if (data.userPositions) {
+            let positionTableContent =``;
+            data.userPositions.forEach(position => {
+                positionTableContent = positionTableContent + `
+                                <tr>    
+                                    <td style="text-align: center;">
+                                        <form action="/profile/deletePosition/${position.id}" method="POST">
+                                            <p id="position">${position.position} - <strong>${position.position_group}</strong>
+                                            <input type="hidden" name="position" id="position" value="${position.position}">
+                                            <input type="hidden" name="positionGroup" id="positionGroup" value="${position.position_group}">
+                                            <button type="submit" class="btn btn-psc-blue"><i class="bi bi-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>\n`;
+            });
+
+            positionTableContainer.innerHTML = positionTableContent;
+        }
+        
     } catch (e) {
+        console.log(e);
         contentContainer.innerHTML = '<div class="alert alert-danger">Fehler beim Laden der Mitgliedsdaten</div>';
     }
   }

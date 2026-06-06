@@ -3,16 +3,15 @@ const contactStore = require("../../models/contact-store.js");
 
 const contact = {
   async index(request, response) {
-    let soccer = await contactStore.getContactsByPositionGroup("Ausschuss_Fußball");
-    let breitensport = await contactStore.getContactsByPositionGroup("Ausschuss_Breitensport");
-    let tennis = await contactStore.getContactsByPositionGroup("Ausschuss_Tennis");
-    let stockschützen = await contactStore.getContactsByPositionGroup("Ausschuss_Stockschützen");
+    let soccer = [...await contactStore.getContactsByPositionGroup("fCommittee"), ...await contactStore.getContactsByPositionGroup("fAbtLeading")];
+    let breitensport = [...await contactStore.getContactsByPositionGroup("bCommittee"), ...await contactStore.getContactsByPositionGroup("bAbtLeading")];
+    let stockschützen = [...await contactStore.getContactsByPositionGroup("sCommittee"), ...await contactStore.getContactsByPositionGroup("sAbtLeading")];
+    let tennis = [...await contactStore.getContactsByPositionGroup("tCommittee"), ...await contactStore.getContactsByPositionGroup("tAbtLeading")];
 
     const weights = {
-      "1. Abteilungsleiter" : 1,
-      "2. Abteilungsleiter" : 2,
-      "1. Jugendleiter Abt. Fußball" : 3,
-      "2. Jugendleiter Abt. Fußball" : 4,
+      "Abteilungsleiter" : 1,
+      "Jugendleiter" : 2,
+      "Ausschuss" : 3,
     };
 
     soccer.sort((a, b) => {

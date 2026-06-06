@@ -35,10 +35,13 @@ router.get("/archive", archive.index);
 router.get("/membership", membership.index);
 router.post("/membership/apply", membership.addMembership)
 router.get("/profile", auth.protected, profil.index);
-router.post("/profile/editMember/:id", auth.protected, profil.editMember);
+router.post("/profile/editStatus/:id", auth.protected, profil.editMemberStatus);
+router.post("/profile/editPosition/:id", auth.protected, profil.editMemberPosition);
 router.get("/profile/edit/", auth.protected, profil_edit.index);
 router.post("/profile/edit/:id", auth.protected, profil_edit.update);
 router.get("/profile/memberDetails/:user_id", auth.protected, profil.memberDetails);
+router.post("/profile/editPassword/:id", auth.protected, profil_edit.changePassword);
+router.post("/profile/deletePosition/:id", auth.protected, profil.deletePosition);
 
 router.get("/verein/termine", appointments.index);
 router.get("/verein/anprechpartner", contact.index);
