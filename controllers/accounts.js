@@ -28,6 +28,7 @@ const accounts = {
     // - userId: user.id -> to identify the user in the database
     // - user: user.username -> to display the username in the frontend
     // - role: user.role -> to check if the user is an admin for displaying admin content in the frontend
+    // - src_img: user.src_img -> to display the profile picture in the frontend (nav bar icon to get to the profile page)
     async authenticate(request, response) {
         const user = await userstore.authenticateUser(request.body.username, request.body.password);
 
@@ -35,6 +36,7 @@ const accounts = {
             request.session.userId = user.id;
             request.session.user = user.username;
             request.session.role = user.role;
+            request.session.src_img = user.src_img;
             logger.info("User successfully authenticated and added to session", user);
 
             response.status(200).json({
@@ -53,7 +55,7 @@ const accounts = {
     async getCurrentUser(request) {
         const user = request.session.userId;
         const userProfile = await userstore.getUserById(user);
-        console.log(userProfile);
+        
         return userProfile;
     },
 
@@ -62,6 +64,7 @@ const accounts = {
     async getUserApplyStatus(request) {
         const user = request.session.userId;
         const applyStatus = await userstore.getUserApplyStatus(user);
+
         return applyStatus;
     }
 };

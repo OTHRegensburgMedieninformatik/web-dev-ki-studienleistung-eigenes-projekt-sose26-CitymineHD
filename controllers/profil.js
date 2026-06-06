@@ -18,6 +18,7 @@ const home = {
         favicon: "/src/header/psc_logo_154x154.png",
         isLogin: request.session.user,
         isAdmin: request.session.user && request.session.role === 'admin',
+        userProfilePicture: request.session.user ? request.session.src_img  : null,
         userProfile: userProfile,
         userPositions: userPositions,
         applyStatus: applyStatus.status == 0 ? "<span class=\"yellow-dot\"></span> In Prüfung" : applyStatus.status == 1 ? "<span class=\"green-dot\"></span> Mitglied" : applyStatus.status == 2 ? "<span class=\"red-dot\"></span> Abgelehnt" : "<span class=\"grey-dot\"></span> Unbekannt",

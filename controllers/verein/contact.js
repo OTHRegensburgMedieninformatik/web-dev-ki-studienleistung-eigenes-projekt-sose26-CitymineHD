@@ -47,7 +47,8 @@ const contact = {
       tennis: tennis,
       stockschützen: stockschützen,
       isLogin: request.session.user,
-      isAdmin: request.session.user && request.session.role === 'admin'
+      isAdmin: request.session.user && request.session.role === 'admin',
+      userProfilePicture: request.session.user ? request.session.src_img  : null
     };
     response.render("verein/contact", viewData);
   },

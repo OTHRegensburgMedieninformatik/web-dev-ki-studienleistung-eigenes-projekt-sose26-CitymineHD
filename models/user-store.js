@@ -58,14 +58,13 @@ const userStore = {
     },
 
     async authenticateUser(username, password) {
-        const query = 'SELECT * FROM project.account join project.role on project.account.id = project.role.id WHERE username=$1'; 
+        const query = 'SELECT project.member_data.id, username, role, password, salt, src_img FROM project.member_data join (project.account join project.role on project.account.id = project.role.id) on project.member_data.id = project.account.id WHERE username=$1'; 
         const values = [username];
         try { 
             let dbRes = await dataStoreClient.query(query, values);
-            console.log(dbRes.rows[0]);
             if (dbRes.rows[0] !== undefined) { 
                 if (crypto.verifyPassword(password, dbRes.rows[0].password, dbRes.rows[0].salt)) {
-                    return {id: dbRes.rows[0].id, username: dbRes.rows[0].username, role: dbRes.rows[0].role};
+                    return {id: dbRes.rows[0].id, username: dbRes.rows[0].username, role: dbRes.rows[0].role, src_img: dbRes.rows[0].src_img};
                 }
                 return undefined;
             } else { 
@@ -84,7 +83,7 @@ const userStore = {
             let dbRes = await dataStoreClient.query(query, values); 
             logger.info(`Getting user ${dbRes.rows[0].username}`); 
             if (dbRes.rows[0] !== undefined) { 
-                return {id: dbRes.rows[0].id, lastName: dbRes.rows[0].lastname, firstName: dbRes.rows[0].firstname, birthday: crypto.decrypt(dbRes.rows[0].birthday, dbRes.rows[0].iv, process.env.CRYPTO_KEY), address: crypto.decrypt(dbRes.rows[0].address, dbRes.rows[0].iv, process.env.CRYPTO_KEY), postcode: crypto.decrypt(dbRes.rows[0].postcode, dbRes.rows[0].iv, process.env.CRYPTO_KEY), city: crypto.decrypt(dbRes.rows[0].city, dbRes.rows[0].iv, process.env.CRYPTO_KEY), phone: dbRes.rows[0].phone, handy: dbRes.rows[0].handy, mail: dbRes.rows[0].mail, bankFirstName: crypto.decrypt(dbRes.rows[0].bank_firstname, dbRes.rows[0].iv, process.env.CRYPTO_KEY), bankLastName: crypto.decrypt(dbRes.rows[0].bank_lastname, dbRes.rows[0].iv, process.env.CRYPTO_KEY), bankAddress: crypto.decrypt(dbRes.rows[0].bank_address, dbRes.rows[0].iv, process.env.CRYPTO_KEY), iban: crypto.decrypt(dbRes.rows[0].iban, dbRes.rows[0].iv, process.env.CRYPTO_KEY), bic: crypto.decrypt(dbRes.rows[0].bic, dbRes.rows[0].iv, process.env.CRYPTO_KEY), institut: crypto.decrypt(dbRes.rows[0].institut, dbRes.rows[0].iv, process.env.CRYPTO_KEY), department: dbRes.rows[0].department, privacy: dbRes.rows[0].privacy, newsletter: dbRes.rows[0].newsletter, applyStatus: dbRes.rows[0].status}; 
+                return {id: dbRes.rows[0].id, lastName: dbRes.rows[0].lastname, firstName: dbRes.rows[0].firstname, birthday: crypto.decrypt(dbRes.rows[0].birthday, dbRes.rows[0].iv, process.env.CRYPTO_KEY), address: crypto.decrypt(dbRes.rows[0].address, dbRes.rows[0].iv, process.env.CRYPTO_KEY), postcode: crypto.decrypt(dbRes.rows[0].postcode, dbRes.rows[0].iv, process.env.CRYPTO_KEY), city: crypto.decrypt(dbRes.rows[0].city, dbRes.rows[0].iv, process.env.CRYPTO_KEY), phone: dbRes.rows[0].phone, handy: dbRes.rows[0].handy, mail: dbRes.rows[0].mail, bankFirstName: crypto.decrypt(dbRes.rows[0].bank_firstname, dbRes.rows[0].iv, process.env.CRYPTO_KEY), bankLastName: crypto.decrypt(dbRes.rows[0].bank_lastname, dbRes.rows[0].iv, process.env.CRYPTO_KEY), bankAddress: crypto.decrypt(dbRes.rows[0].bank_address, dbRes.rows[0].iv, process.env.CRYPTO_KEY), iban: crypto.decrypt(dbRes.rows[0].iban, dbRes.rows[0].iv, process.env.CRYPTO_KEY), bic: crypto.decrypt(dbRes.rows[0].bic, dbRes.rows[0].iv, process.env.CRYPTO_KEY), institut: crypto.decrypt(dbRes.rows[0].institut, dbRes.rows[0].iv, process.env.CRYPTO_KEY), department: dbRes.rows[0].department, privacy: dbRes.rows[0].privacy, newsletter: dbRes.rows[0].newsletter, applyStatus: dbRes.rows[0].status, src_img: dbRes.rows[0].src_img}; 
             } else { 
                 return undefined; 
             } 
@@ -189,8 +188,6 @@ const userStore = {
                 E_Jugend: E_Jugend.rows
             };
 
-            console.log(teams);
-
             return teams;
         } catch (e) { 
             console.log("Error getting all Teams including staff", e);
@@ -262,6 +259,17 @@ const userStore = {
             await dataStoreClient.query(query, values);
         } catch (e) {
             console.log("Error while deleting user position", e);
+        }
+    },
+
+    async updateUserProfileImage(userId, img) {
+        const query = 'Update project.member_data set src_img=$1 where id=$2';
+        const values = [img, userId];
+
+        try {
+            await dataStoreClient.query(query, values);
+        } catch (e) {
+            console.log("Error while updating user profile image", e);
         }
     }
 }; 

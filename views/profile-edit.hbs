@@ -5,7 +5,7 @@
         <div class="col-md-3">
             <div class="panel">
                  <div class="panel d-flex flex-column align-items-center bg-psc-yellow" style="border-radius: 10px; padding: 20px">
-                    <div class="circle-centered" style="background-image: url(/psc_logo.png); border: 2px solid var(--psc-blue)"></div>
+                    <div class="circle-centered" style="background-image: url({{userProfile.src_img}}); border: 2px solid var(--psc-blue)"></div>
                     <h1>{{userProfile.firstName}} {{userProfile.lastName}}</h1>
                 </div>
                 <div class="d-flex flex-column">
@@ -86,24 +86,20 @@
                         <button type="submit" class="btn btn-psc-blue">Passwort ändern</button>
                         <div id="passwordError" role="alert" style="margin: 20px;"></div>
                     </form>
-                    <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th style="padding: 10px; text-align: center;">Mitgliedsstatus</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="text-align: center;">{{{applyStatus}}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <h5 style="margin-top: 40px; margin-bottom: 40px;">Profilbild ändern</h5>
+                    <div class="d-flex justify-content-center align-items-center; flex-direction: row" style="margin: 30px;">
+                        <div class="circle-centered" style="background-image: url({{userProfile.src_img}}); border: 2px solid var(--psc-blue)"></div>
+                        <form action="/profile/uploadProfilePicture/{{userProfile.id}}" method="POST" enctype="multipart/form-data">
+                            <div class="col">
+                                <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+                            </div>
+                            <button type="submit" class="btn btn-psc-blue" style="margin: 20px;">Profilbild ändern</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>^
 </body>
 
 <script>

@@ -25,7 +25,8 @@ const profil_edit = require("./controllers/profil-edit.js");
 
 
 
-const upload = multer({dest: "public/src/news/"});
+const uploadNews = multer({dest: "public/src/news/"});
+const uploadProfile = multer({dest: "public/src/profile/"});
 
 
 
@@ -42,6 +43,7 @@ router.post("/profile/edit/:id", auth.protectedAdmin, profil_edit.update);
 router.get("/profile/memberDetails/:user_id", auth.protectedAdmin, profil.memberDetails);
 router.post("/profile/editPassword/:id", auth.protectedUser, profil_edit.changePassword);
 router.post("/profile/deletePosition/:id", auth.protectedAdmin, profil.deletePosition);
+router.post("/profile/uploadProfilePicture/:id", auth.protectedUser, uploadProfile.single("profilePicture"), profil_edit.uploadProfileImage);
 
 router.get("/verein/termine", appointments.index);
 router.get("/verein/anprechpartner", contact.index);
@@ -55,8 +57,8 @@ router.get("/department/stockschuetzen", stockschuetzen.index);
 router.get("/department/tennis", tennis.index);
 
 router.get("/news/deleteNews/:id", auth.protectedAdmin, news.deleteNewsArticle);
-router.post("/news/addNews", auth.protectedAdmin, upload.single("src_img"), news.addNewsArticle);
-router.post("/news/editNews/:id", auth.protectedAdmin, upload.single("src_img"), news.editNewsArticle);
+router.post("/news/addNews", auth.protectedAdmin, uploadNews.single("src_img"), news.addNewsArticle);
+router.post("/news/editNews/:id", auth.protectedAdmin, uploadNews.single("src_img"), news.editNewsArticle);
 
 router.post("/verein/authenticate", accounts.authenticate);
 router.get("/verein/logout", accounts.logout);
