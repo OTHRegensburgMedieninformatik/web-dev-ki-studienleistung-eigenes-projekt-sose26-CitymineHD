@@ -199,7 +199,7 @@ const userStore = {
 
     async getUserPosition(userId) {
         logger.info('Getting User Position ${userId}');
-        const query = 'SELECT position, replace(position_group, \'_\', \'-\') as position_group FROM project.personal where id=$1';
+        const query = 'SELECT id, position, replace(position_group, \'_\', \'-\') as position_group FROM project.personal where id=$1';
         const values = [userId];
         
         try {

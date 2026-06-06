@@ -53,39 +53,19 @@
                         </table>
                     </div>
                 </div>
-                <form action="/profile/editMember/{{user_id}}" method="POST">
-                    <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th style="padding: 10px; text-align: center;">Mitgliedsstatus</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="text-align: center;">                
-                                    <select class="form-select" style="margin-right: 10px;" id="status" name="status">
-                                        <option value="1">Mitglied</option>
-                                        <option value="0">Prüfung</option>
-                                        <option value="2">Abgelehnt</option>
-                                    </select></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <h4>Position hinzufügen</h4>
-                    <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th style="padding: 10px; text-align: center;"><h5>Deine Positionen</h5></th>
-                                </tr>
-                            </thead>
-                            <tbody id="positionTable{{user_id}}">
-                            </tbody>
-                        </table>
-                    </div>
+                <h4>Position hinzufügen</h4>
+                <div class="d-flex justify-content-center align-items-center" style="margin: 30px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="padding: 10px; text-align: center;"><h5>Deine Positionen</h5></th>
+                            </tr>
+                        </thead>
+                        <tbody id="positionTable{{user_id}}">
+                        </tbody>
+                    </table>
+                </div>
+                <form action="/profile/editPosition/{{user_id}}" method="POST">
                     <div style="display: flex; flex-direction: row;">
                         <input type="text" id="position" name="position" placeholder="Position" style="margin-right: 10px;">
                         <select class="form-select" style="margin-right: 10px;" id="positionGroup" name="positionGroup">
@@ -113,6 +93,14 @@
                 </form> 
             </div>
             <div class="modal-footer d-flex justify-content-end">
+                <form action="/profile/editStatus/{{user_id}}" method="POST" style="display: flex; flex-direction: row;">
+                    <select class="form-select" style="margin-right: 10px;" id="status" name="status">
+                        <option value="1">Mitglied</option>
+                        <option value="0">Prüfung</option>
+                        <option value="2">Abgelehnt</option>
+                    </select>
+                    <button type="submit" class="btn btn-psc-yellow">Update Status</button>
+                </form>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#modal{{user_id}}">Schließen</button>
             </div>
         </div>

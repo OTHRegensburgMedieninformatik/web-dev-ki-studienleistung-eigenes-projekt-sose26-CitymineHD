@@ -321,19 +321,23 @@
             element.textContent = data.userDetails[field];
         });
 
-        //console.log(data.userPositions);
-
         if (data.userPositions) {
             let positionTableContent =``;
             data.userPositions.forEach(position => {
-                positionTableContent = positionTableContent + `<tr>    
-                                    <td style="text-align: center;"><strong>${position.position_group}</strong> - ${position.position}></td>
+                positionTableContent = positionTableContent + `
+                                <tr>    
+                                    <td style="text-align: center;">
+                                        <form action="/profile/deletePosition/${position.id}" method="POST">
+                                            <p id="position">${position.position} - <strong>${position.position_group}</strong>
+                                            <input type="hidden" name="position" id="position" value="${position.position}">
+                                            <input type="hidden" name="positionGroup" id="positionGroup" value="${position.position_group}">
+                                            <button type="submit" class="btn btn-psc-blue"><i class="bi bi-trash"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>\n`;
             });
 
             positionTableContainer.innerHTML = positionTableContent;
-
-            console.log(positionTableContent);
         }
         
     } catch (e) {

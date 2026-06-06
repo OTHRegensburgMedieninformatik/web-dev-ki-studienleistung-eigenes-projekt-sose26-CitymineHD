@@ -1,7 +1,12 @@
 const logger = require("../../utils/logger.js");
 const userStore = require("../../models/user-store.js");
 
+// === Controller for Soccer page ===
+// Page with general information about the department, dynamic content is the teams and their trainers, which are fetched from the database
+// Models: user-store for fetching the teams and their trainers from the database
+
 const soccer = {
+  //index render all teams with their trainers dynamically, sorted by position (Trainer, Co-Trainer, Betreuer)
   async index(request, response) {
     const teams = await userStore.getTeams();
 
@@ -30,6 +35,12 @@ const soccer = {
     })
 
     logger.info("soccer rendering");
+
+    //viewData:
+    // title: "Soccer"
+    // isLogin: request.session.user -> to check if user is logged in
+    // isAdmin: request.session.user && request.session.role === 'admin' -> to check if user is admin
+    // teams: teams -> Sorted Array of teams with their trainers
     const viewData = {
       title: "Soccer",
       isLogin: request.session.user,

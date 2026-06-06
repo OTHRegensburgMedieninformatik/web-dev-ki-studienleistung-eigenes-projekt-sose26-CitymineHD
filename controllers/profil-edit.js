@@ -1,23 +1,32 @@
 const logger = require("../utils/logger.js");
 const userStore = require("../models/user-store.js");
 
+// === Controller for Profile Edit page ===
+// Page where user can edit their personal information
+// Models:
+// - userStore for handling all database interactions regarding users
+
 const home = {
+
+    // Index is in this case also the loading function for the user information, apply status
     async index(request, response) {
         logger.info("profile-edit rendering");
         const user = request.session.userId;
         const userProfile = await userStore.getUserById(user);
         const applyStatus = await userStore.getUserApplyStatus(user);
-        const applys = await userStore.getAllUserApplys(user);
-        const allAllMembers = await userStore.getAllUsers();
 
+        //viewData:
+        // title: "Profil"
+        // isLogin: request.session.user -> to check if user is logged in
+        // isAdmin: request.session.user && request.session.role === 'admin' -> to check if user is admin
+        // userProfile: userProfile -> Personal information of the user
+        // applyStatus: applyStatus.status == 0 ? "In Prüfung" : applyStatus.status == 1 ? "Mitglied" : applyStatus.status == 2 ? "Abgelehnt" : "Unbekannt" -> Application status of the user, with corresponding color coding in the frontend
         const viewData = {
         title: "Profil",
         isLogin: request.session.user,
         isAdmin: request.session.user && request.session.role === 'admin',
         userProfile: userProfile,
         applyStatus: applyStatus.status == 0 ? "<span class=\"yellow-dot\"></span> In Prüfung" : applyStatus.status == 1 ? "<span class=\"green-dot\"></span> Mitglied" : applyStatus.status == 2 ? "<span class=\"red-dot\"></span> Abgelehnt" : "<span class=\"grey-dot\"></span> Unbekannt",
-        applys: applys,
-        allMembers: allAllMembers
         };
         response.render("profile-edit", viewData);
     },

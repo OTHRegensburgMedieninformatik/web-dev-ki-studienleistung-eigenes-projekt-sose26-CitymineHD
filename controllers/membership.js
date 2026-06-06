@@ -1,9 +1,17 @@
 const logger = require("../utils/logger.js");
 const userStore = require("../models/user-store.js")
 
+// === Controller for Membership page ===
+// Page for the signup form for new members and general information about the apply process
+
 const membership = {
   index(request, response) {
     logger.info("membership rendering");
+
+    //viewData:
+    // title: "Soccer"
+    // isLogin: request.session.user -> to check if user is logged in
+    // isAdmin: request.session.user && request.session.role === 'admin' -> to check if user is admin
     const viewData = {
       title: "Membership",
       isLogin: request.session.user,
@@ -11,9 +19,12 @@ const membership = {
     };
     response.render("membership", viewData);
   },
+
+  // Main functionality for this page, adding a new membership to the database
   async addMembership(request, response) {
     logger.debug("Adding new Membership to DB");
     
+    // Create a new membership object with the data from the request body
     const membership = {
       lastname: request.body.lastName,
       firstname: request.body.firstName,
@@ -35,6 +46,9 @@ const membership = {
       newsletter: request.body.privacy2
     }
 
+    // Error types: -> Response status 500, Render an error message in the frontend
+    // 1. Missing required fields (lastname, firstname, birthday, address, postcode, city, phone, mail, department, privacy)
+    // 2. Database error (e.g. connection error, validation error)
     const newUser = await userStore.addUser(membership);
     if (newUser) {
       response.status(200).json({
