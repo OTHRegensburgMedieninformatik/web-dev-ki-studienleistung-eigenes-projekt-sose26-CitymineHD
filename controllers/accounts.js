@@ -3,6 +3,7 @@ const userstore = require("../models/user-store.js");
 const logger = require("../utils/logger.js");
 
 const accounts = {
+<<<<<<< Updated upstream
     login(request, response) {
         const viewData = {
             title: "Login to the Service"
@@ -10,12 +11,15 @@ const accounts = {
         response.render("login", viewData);
     },
 
+=======
+>>>>>>> Stashed changes
     logout(request, response) {
         request.session.destroy();
         console.log("Session destroyed!")
         response.redirect("/");
     },
 
+<<<<<<< Updated upstream
     signup(request, response) {
         const viewData = {
             title: "Signup for the Service"
@@ -23,6 +27,9 @@ const accounts = {
         response.render("signup", viewData);
     },
 
+=======
+    // Register gets the user Data from the "Mitglied werden" form and adds the user to the database
+>>>>>>> Stashed changes
     async register(request, response) {
         const user = request.body;
         await userstore.addUser(user);

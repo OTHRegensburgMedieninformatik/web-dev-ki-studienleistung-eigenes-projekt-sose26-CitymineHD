@@ -22,7 +22,8 @@ const leading = {
 
     console.log(leadings);
     const viewData = {
-      title: "Leading",
+      title: "PSC • Vorstandschaft",
+      favicon: "/src/header/psc_logo_154x154.png",
       leading: leadings,
       isLogin: request.session.user,
       isAdmin: request.session.user && request.session.role === 'admin'

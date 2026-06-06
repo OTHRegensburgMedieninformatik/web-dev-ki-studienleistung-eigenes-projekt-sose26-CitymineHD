@@ -41,7 +41,8 @@ const contact = {
 
     logger.info("contact rendering");
     const viewData = {
-      title: "Contact",
+      title: "PSC • Ansprechpartner",
+      favicon: "/src/header/psc_logo_154x154.png",
       soccer: soccer,
       breitensport: breitensport,
       tennis: tennis,

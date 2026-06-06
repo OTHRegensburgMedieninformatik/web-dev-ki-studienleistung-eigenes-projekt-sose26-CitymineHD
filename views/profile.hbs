@@ -111,48 +111,52 @@
                     <div class="row d-flex">
                         <div class="col-md-6">
                             <h5 style="text-decoration: underline;">Neue Anträge</h5>
-                            <table style="width: 100%; table-layout: fixed;">
-                                <thead>
-                                    <tr>
-                                        <th style="padding: 10px; text-align: center;">Vorname</th>
-                                        <th style="padding: 10px; text-align: center;">Nachname</th>
-                                        <th style="padding: 10px; text-align: center;">Aktion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{#each applys}}
-                                    <tr>
-                                        <td style="text-align: center;">{{firstname}}</td>
-                                        <td style="text-align: center;">{{lastname}}</td>
-                                        <td style="text-align: center;"><a class="btn btn-psc-blue" onclick="openMemberDetails('{{user_id}}')" data-bs-toggle="modal" data-bs-target="#modal{{user_id}}">Bearbeiten</a></td>
-                                    </tr>
-                                    {{/each}}
-                                </tbody>
-                            </table>
+                            <div class="table-responsive" style="max-height: 300px;">
+                                <table style="width: 100%; table-layout: fixed;">
+                                    <thead>
+                                        <tr>
+                                            <th style="padding: 10px; text-align: center;">Vorname</th>
+                                            <th style="padding: 10px; text-align: center;">Nachname</th>
+                                            <th style="padding: 10px; text-align: center;">Aktion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each applys}}
+                                        <tr>
+                                            <td style="text-align: center;">{{firstname}}</td>
+                                            <td style="text-align: center;">{{lastname}}</td>
+                                            <td style="text-align: center;"><a class="btn btn-psc-blue" onclick="openMemberDetails('{{user_id}}')" data-bs-toggle="modal" data-bs-target="#modal{{user_id}}">Bearbeiten</a></td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         {{#each applys}}
                         {{> pop_up_edit_member modalId=id}}
                         {{/each}}
                         <div class="col-md-6">
                             <h5 style="text-decoration: underline;">Mitglieder</h5>
-                            <table style="width: 100%; table-layout: fixed;">
-                                <thead>
-                                    <tr>
-                                        <th style="padding: 10px; text-align: center;">Vorname</th>
-                                        <th style="padding: 10px; text-align: center;">Nachname</th>
-                                        <th style="padding: 10px; text-align: center;">Aktion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {{#each allMembers}}
-                                    <tr>
-                                        <td style="text-align: center;">{{firstname}}</td>
-                                        <td style="text-align: center;">{{lastname}}</td>
-                                        <td style="text-align: center;"><a class="btn btn-psc-blue" onclick="openMemberDetails('{{user_id}}')" data-bs-toggle="modal" data-bs-target="#modal{{user_id}}">Bearbeiten</a></td>
-                                    </tr>
-                                    {{/each}}
-                                </tbody>
-                             </table>
+                            <div class="table-responsive" style="max-height: 300px;">
+                                <table style="width: 100%; table-layout: fixed;">
+                                    <thead>
+                                        <tr>
+                                            <th style="padding: 10px; text-align: center;">Vorname</th>
+                                            <th style="padding: 10px; text-align: center;">Nachname</th>
+                                            <th style="padding: 10px; text-align: center;">Aktion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each allMembers}}
+                                        <tr>
+                                            <td style="text-align: center;">{{firstname}}</td>
+                                            <td style="text-align: center;">{{lastname}}</td>
+                                            <td style="text-align: center;"><a class="btn btn-psc-blue" onclick="openMemberDetails('{{user_id}}')" data-bs-toggle="modal" data-bs-target="#modal{{user_id}}">Bearbeiten</a></td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                             </div>
                         </div>
                         {{#each allMembers}}
                         {{> pop_up_edit_member modalId=id}}
@@ -168,30 +172,32 @@
                 </div>
                 <div class="panel-body text-center bg-light" style="border-radius: 10px; padding: 20px;">
                     <div class="row d-flex">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Beschreibung</th>
-                                    <th>Bild</th>
-                                    <th>Aktion</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each news}}
-                                <tr>
-                                    <td style="text-align: center;">{{title}}</td>
-                                    <td style="text-align: center;">{{description}}</td>
-                                    <td><img src="{{src_img}}" alt="Bild" style="width: 60px; height: 60px;"></td>
-                                    <td style="text-align: center;">
-                                        <a class="btn btn-psc-blue" onclick="openEditor('{{id}}', '{{content}}')" data-bs-toggle="modal" data-bs-target="#add{{id}}"><i class="bi bi-pencil-square"></i></a>
-                                        <a class="btn btn-psc-blue" href="/news/deleteNews/{{id}}"><i class="bi bi-trash"></i></a>
-                                    </td>
-                                </tr>
-                                {{> pop_up_add_edit_article modalId="add{{id}}"id=id title=title description=description src_img=src_img content=content}}
-                                {{/each}}
-                            </tbody>
-                        </table>
+                        <div class="table-responsive" style="max-height: 300px;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Beschreibung</th>
+                                        <th>Bild</th>
+                                        <th>Aktion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each news}}
+                                    <tr>
+                                        <td style="text-align: center;">{{title}}</td>
+                                        <td style="text-align: center;">{{description}}</td>
+                                        <td><img src="{{src_img}}" alt="Bild" style="width: 60px; height: 60px;"></td>
+                                        <td style="text-align: center;">
+                                            <a class="btn btn-psc-blue" onclick="openEditor('{{id}}', '{{content}}')" data-bs-toggle="modal" data-bs-target="#add{{id}}"><i class="bi bi-pencil-square"></i></a>
+                                            <a class="btn btn-psc-blue" href="/news/deleteNews/{{id}}"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    {{> pop_up_add_edit_article modalId="add{{id}}"id=id title=title description=description src_img=src_img content=content}}
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                         <p style="weight: 100%; margin-top: 30px;">
                             <a type="button" class="btn btn-psc-blue" onclick="openEditor()" data-bs-toggle="modal" data-bs-target="#add">Artikel hinzufügen &raquo;</a>

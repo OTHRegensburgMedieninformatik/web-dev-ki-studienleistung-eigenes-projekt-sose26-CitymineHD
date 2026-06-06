@@ -176,15 +176,15 @@
 </body>
 
 <script>
-    const memberModal = document.getElementById('membershipModal');
-    const contentContainer = document.getElementById('body-membership');
+    const membershipModalElement = document.getElementById('membershipModal');
+    const contentContainerMembership = document.getElementById('body-membership');
 
-    memberModal.addEventListener('show.bs.modal', async () => {
+    membershipModalElement.addEventListener('show.bs.modal', async () => {
         document.getElementById('modal-registration-form').classList.remove('hidden');
         document.getElementById('modal-registration-successful').classList.add('modal-registration-successful');
     });
 
-    memberModal.querySelector('form').addEventListener('submit', async (event) => {
+    membershipModalElement.querySelector('form').addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const formElement = event.target; 
@@ -204,12 +204,12 @@
                 document.getElementById('modal-registration-form').classList.add('hidden');
                 document.getElementById('modal-registration-successful').classList.remove('hidden');
 
-                contentContainer.innerHTML = `<div class="text-center d-flex flex-column align-items-center modal-scrollable">
+                contentContainerMembership.innerHTML = `<div class="text-center d-flex flex-column align-items-center modal-scrollable">
                     <h3>Danke für Ihre Anmeldung! Wir werden uns in Kürze bei Ihnen melden.</h3>
                     <p>Falls Sie Fragen haben, können Sie uns jederzeit unseren <a href="mailto:schriftführer@peisinger-sc.de">Schriftführer</a> kontaktieren.</p>
                     <h5 style="margin-top: 20px;"> Deine Login-Daten:</h5>
                     
-                    <p><strong>Benutzername:</strong> ${formData.get('firstName')}.${formData.get('lastName')}</p>
+                    <p><strong>Benutzername:</strong> ${formData.get('email')}</p>
                     <p><strong>Passwort:</strong> Deine Postleitzahl (sofort nach der Anmeldung bitte ändern!)</p>
 
                     <p style="margin-top: 20px;">Mit den Login-Daten kannst du dich jederzeit auf unserer Webseite anmelden, um deinen Mitgliedsstatus zu überprüfen oder deine Daten zu aktualisieren.</p>
@@ -218,7 +218,15 @@
                     <p>Dein Peisinger Sportclub Team</p>
                 </div>`;
             } else {
-                console.error('Fehler bei der Registrierung:', response.statusText);
+                document.getElementById('modal-registration-form').classList.add('hidden');
+                document.getElementById('modal-registration-successful').classList.remove('hidden');
+
+                contentContainerMembership.innerHTML = `
+                <div class="text-center d-flex flex-column align-items-center modal-scrollable">
+                    <h3>Es gab ein Problem mit deiner Anmeldung. Bitte versuche eine andere E-Adresse, es später erneut oder kontaktiere unseren <a href="mailto:schriftführer@peisinger-sc.de">Schriftführer</a></h3>
+                    <p style="margin-top: 20px;">Mit sportlichen Grüßen,</p>
+                    <p>Dein Peisinger Sportclub Team</p>
+                </div>`;
             }
         } catch (error) {
             console.error('Fehler bei der Registrierung:', error);

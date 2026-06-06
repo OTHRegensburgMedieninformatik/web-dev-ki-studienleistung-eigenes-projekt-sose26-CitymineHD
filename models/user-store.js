@@ -15,7 +15,7 @@ const userStore = {
 
         const {hash, salt} = crypto.hashPassword(user.postcode);
 
-        const values_account = [user.firstname + "." + user.lastname, hash, salt];
+        const values_account = [user.mail, hash, salt];
 
         try { 
             let acc = await dataStoreClient.query(query_account, values_account);
@@ -57,7 +57,7 @@ const userStore = {
         } 
     },
 
-    async authenticateUser(username, password) { 
+    async authenticateUser(username, password) {
         const query = 'SELECT * FROM project.account join project.role on project.account.id = project.role.id WHERE username=$1'; 
         const values = [username];
         try { 
@@ -193,7 +193,8 @@ const userStore = {
 
             return teams;
         } catch (e) { 
-            console.log("Error getting all Teams including staff", e); 
+            console.log("Error getting all Teams including staff", e);
+            return undefined;
         }
     },
 
