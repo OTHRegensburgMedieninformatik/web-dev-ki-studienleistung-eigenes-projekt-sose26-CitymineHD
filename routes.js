@@ -34,13 +34,6 @@ router.get("/news", news.index);
 router.get("/archive", archive.index);
 router.get("/membership", membership.index);
 router.post("/membership/apply", membership.addMembership)
-<<<<<<< Updated upstream
-router.get("/profile", auth.protected, profil.index);
-router.post("/profile/editMember/:id", auth.protected, profil.editMember);
-router.get("/profile/edit/", auth.protected, profil_edit.index);
-router.post("/profile/edit/:id", auth.protected, profil_edit.update);
-router.get("/profile/memberDetails/:user_id", auth.protected, profil.memberDetails);
-=======
 router.get("/profile", auth.protectedUser, profil.index);
 router.post("/profile/editStatus/:id", auth.protectedAdmin, profil.editMemberStatus);
 router.post("/profile/editPosition/:id", auth.protectedAdmin, profil.editMemberPosition);
@@ -49,7 +42,6 @@ router.post("/profile/edit/:id", auth.protectedAdmin, profil_edit.update);
 router.get("/profile/memberDetails/:user_id", auth.protectedAdmin, profil.memberDetails);
 router.post("/profile/editPassword/:id", auth.protectedUser, profil_edit.changePassword);
 router.post("/profile/deletePosition/:id", auth.protectedAdmin, profil.deletePosition);
->>>>>>> Stashed changes
 
 router.get("/verein/termine", appointments.index);
 router.get("/verein/anprechpartner", contact.index);

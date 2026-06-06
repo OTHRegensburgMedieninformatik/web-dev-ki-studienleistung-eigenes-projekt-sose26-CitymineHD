@@ -2,34 +2,20 @@ const { error } = require("winston");
 const userstore = require("../models/user-store.js");
 const logger = require("../utils/logger.js");
 
-const accounts = {
-<<<<<<< Updated upstream
-    login(request, response) {
-        const viewData = {
-            title: "Login to the Service"
-        };
-        response.render("login", viewData);
-    },
+// === Controller for Accounts ===
+// Handles login, logout, signup, registration and authentication of users
+// Also handles fetching the current user and their apply status for the profile page
+// Models:
+// - userStore for handling all database interactions regarding users
 
-=======
->>>>>>> Stashed changes
+const accounts = {
     logout(request, response) {
         request.session.destroy();
         console.log("Session destroyed!")
         response.redirect("/");
     },
 
-<<<<<<< Updated upstream
-    signup(request, response) {
-        const viewData = {
-            title: "Signup for the Service"
-        };
-        response.render("signup", viewData);
-    },
-
-=======
     // Register gets the user Data from the "Mitglied werden" form and adds the user to the database
->>>>>>> Stashed changes
     async register(request, response) {
         const user = request.body;
         await userstore.addUser(user);
@@ -37,8 +23,13 @@ const accounts = {
         response.redirect("/");
     },
 
+    // Authenticate gets the username and password from the login form and checks if they are correct, if so it adds the user to the session
+    // Session Data:
+    // - userId: user.id -> to identify the user in the database
+    // - user: user.username -> to display the username in the frontend
+    // - role: user.role -> to check if the user is an admin for displaying admin content in the frontend
     async authenticate(request, response) {
-        let user = await userstore.authenticateUser(request.body.username, request.body.password);
+        const user = await userstore.authenticateUser(request.body.username, request.body.password);
 
         if (user) {
             request.session.userId = user.id;
@@ -57,6 +48,8 @@ const accounts = {
         }
     },
 
+    // Gets the the user profile who requests it, by using the userId from the session
+    // Is needed for the profile page
     async getCurrentUser(request) {
         const user = request.session.userId;
         const userProfile = await userstore.getUserById(user);
@@ -64,6 +57,8 @@ const accounts = {
         return userProfile;
     },
 
+    // Gets the apply status of the user who requests it, by using the userId from the session
+    // Is needed for the profile page
     async getUserApplyStatus(request) {
         const user = request.session.userId;
         const applyStatus = await userstore.getUserApplyStatus(user);

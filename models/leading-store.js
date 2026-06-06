@@ -4,7 +4,7 @@ const logger = require("../utils/logger.js");
 
 const leadingStore = { 
   async getAllLeadings() { 
-    const query = 'SELECT * FROM project.member_data join project.personal using(id) where position_group = \'Vorstandschaft\''; 
+    const query = 'SELECT * FROM project.member_data join project.personal using(id) where position_group = \'leading\''; 
     try { 
       let result = await dataStoreClient.query(query); 
       return result.rows; 

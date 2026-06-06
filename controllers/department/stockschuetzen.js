@@ -1,5 +1,9 @@
 const logger = require("../../utils/logger.js");
 
+// === Controller for Stockschützen page ===
+// Page with general information about the department, no dynamic content yet, so no model is needed for now
+// Page is currently in progress
+
 const stockschuetzen = {
   index(request, response) {
     logger.info("stockschuetzen rendering");

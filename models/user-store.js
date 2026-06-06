@@ -174,9 +174,9 @@ const userStore = {
 
     async getTeams() {
         logger.info("Getting all Teams including staff");
-        const queryG = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'G_Jugend\'';
-        const queryF = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'F_Jugend\'';
-        const queryE = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'E_Jugend\'';
+        const queryG = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'fTrainerG\'';
+        const queryF = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'fTrainerF\'';
+        const queryE = 'SELECT * FROM project.personal join project.member_data on project.personal.id = project.member_data.id where position_group=\'fTrainerE\'';
 
         try {
             const G_Jugend = await dataStoreClient.query(queryG);
@@ -200,7 +200,7 @@ const userStore = {
 
     async getUserPosition(userId) {
         logger.info('Getting User Position ${userId}');
-        const query = 'SELECT position, replace(position_group, \'_\', \'-\') as position_group FROM project.personal where id=$1';
+        const query = 'SELECT id, position, replace(position_group, \'_\', \'-\') as position_group FROM project.personal where id=$1';
         const values = [userId];
         
         try {
@@ -213,7 +213,57 @@ const userStore = {
         } catch (e) {
             console.log("Error getting user position", e);
         }
+    },
+
+    async changeUserPassword(userId, currentPassword, newPassword) {
+        logger.info('Changing password for User', userId);
+        
+        const query_get = 'SELECT password, salt FROM project.account WHERE id=$1';
+        const values_get = [userId];
+
+        try {
+            const dbRes_get = await dataStoreClient.query(query_get, values_get);
+
+            if (!crypto.verifyPassword(currentPassword, dbRes_get.rows[0].password, dbRes_get.rows[0].salt)) {
+                return undefined;
+            }
+
+            const {hash, salt} = crypto.hashPassword(newPassword);
+
+            const query_set = 'Update project.account set password=$1, salt=$2 where id=$3';
+            const values_set = [hash, salt, userId];
+
+            const dbRes_set = await dataStoreClient.query(query_set, values_set);
+            
+            return true;
+        } catch (e) {
+            console.log("Error while updating users password", e);
+            
+            return undefined;
+        }
+    },
+
+    async addUserPosition(userId, positions, position_group, img) {
+        const query = 'INSERT INTO project.personal (id, position, position_group, src_img) VALUES ($1, $2, $3, $4)';
+        const values = [userId, positions, position_group, img];
+
+        try {
+            await dataStoreClient.query(query, values);
+        } catch (e) {
+            console.log("Error while adding user position", e);
+        }
+    },
+
+    async deleteUserPosition(userId, position, position_group) {
+        const query = 'DELETE FROM project.personal WHERE id=$1 AND position=$2 AND position_group=$3';
+        const values = [userId, position, position_group];
+
+        try {
+            await dataStoreClient.query(query, values);
+        } catch (e) {
+            console.log("Error while deleting user position", e);
+        }
     }
 }; 
  
-module.exports = userStore; 
+module.exports = userStore;
