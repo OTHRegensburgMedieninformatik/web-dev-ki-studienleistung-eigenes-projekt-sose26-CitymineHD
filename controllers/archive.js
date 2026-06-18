@@ -14,10 +14,6 @@ const archive = {
     // isAdmin: request.session.user && request.session.role === 'admin' -> to check if user is admin
     const viewData = {
       title: "PSC • Archive",
-      favicon: "/src/header/psc_logo_154x154.png",
-      isLogin: request.session.user,
-      isAdmin: request.session.user && request.session.role === 'admin',
-      userProfilePicture: request.session.user ? request.session.src_img  : null
     };
     response.render("archive", viewData);
   },

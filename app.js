@@ -2,8 +2,7 @@ const express = require("express");
 const logger = require("./utils/logger");
 const handlebars = require("express-handlebars");
 const session = require("express-session");
-const swaggerUi = require('swagger-ui-express');
-const swaggerJsdoc = require('swagger-jsdoc');
+const auth = require("./utils/auth.js");
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -22,6 +21,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+app.use(auth.userData);
 
 app.engine('.hbs', handlebars.engine({extname: '.hbs'}));
 app.set('view engine', '.hbs')  ;

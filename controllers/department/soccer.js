@@ -37,10 +37,6 @@ const soccer = {
     logger.info("soccer rendering");
     const viewData = {
       title: "PSC • Fußball",
-      favicon: "/src/header/psc_logo_154x154.png",
-      isLogin: request.session.user,
-      isAdmin: request.session.user && request.session.role === 'admin',
-      userProfilePicture: request.session.user ? request.session.src_img  : null,
       teams: teams
     };
     response.render("department/soccer", viewData);

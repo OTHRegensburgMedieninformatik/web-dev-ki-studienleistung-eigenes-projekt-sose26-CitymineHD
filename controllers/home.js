@@ -9,10 +9,6 @@ const home = {
     logger.info("home rendering");
     const viewData = {
       title: "Peisinger Sportverein 1988 e.V.",
-      favicon: "/src/header/psc_logo_154x154.png",
-      isLogin: request.session.user,
-      isAdmin: request.session.user && request.session.role === 'admin',
-      userProfilePicture: request.session.user ? request.session.src_img  : null
     };
     response.render("index", viewData);
   },

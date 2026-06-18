@@ -31,11 +31,7 @@ const news = {
     // isAdmin: request.session.user && request.session.role === 'admin' -> to check if user is admin
     const viewData = {
       title: "PSC • News",
-      favicon: "/src/header/psc_logo_154x154.png",
       news: news,
-      isAdmin: request.session.user && request.session.role === 'admin',
-      isLogin: request.session.user,
-      userProfilePicture: request.session.user ? request.session.src_img  : null
     };
     response.render("news", viewData);
   },
