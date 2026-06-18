@@ -271,6 +271,35 @@ const userStore = {
         } catch (e) {
             console.log("Error while updating user profile image", e);
         }
+    },
+
+    async getContactsByPositionGroup(positionGroup) {
+        const query = 'SELECT * FROM project.member_data join project.personal on project.member_data.id = project.personal.id where position_group = $1'; 
+        try { 
+        let result = await dataStoreClient.query(query, [positionGroup]); 
+        return result.rows; 
+        } catch (e) { 
+        logger.error("Error fetching leading by position", e); 
+        }
+    },
+
+    async getAllLeadings() { 
+        const query = 'SELECT * FROM project.member_data join project.personal using(id) where position_group = \'leading\''; 
+        try { 
+            let result = await dataStoreClient.query(query); 
+            return result.rows; 
+        } catch (e) { 
+            logger.error("Error fetching all playlists", e); 
+        }
+    },
+    async getLeadingByPosition(position) {
+        const query = 'SELECT * FROM project.display_personal join project.personal on project.personal.id = project.display_personal.personal_id where position = $1'; 
+        try { 
+            let result = await dataStoreClient.query(query, [position]); 
+            return result.rows; 
+        } catch (e) { 
+            logger.error("Error fetching leading by position", e); 
+        }
     }
 }; 
  

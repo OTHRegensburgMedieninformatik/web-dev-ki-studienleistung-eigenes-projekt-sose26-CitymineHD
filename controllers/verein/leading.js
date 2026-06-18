@@ -1,9 +1,9 @@
 const logger = require("../../utils/logger.js");
-const leadingStore = require("../../models/leading-store.js");
+const userStore = require("../../models/user-store.js");
 
 const leading = {
   async index(request, response) {
-    let leadings = await leadingStore.getAllLeadings();
+    let leadings = await userStore.getAllLeadings();
     logger.info("leading rendering");
 
     const weights = {

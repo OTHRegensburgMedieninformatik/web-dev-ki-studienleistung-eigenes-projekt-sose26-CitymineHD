@@ -1,12 +1,12 @@
 const logger = require("../../utils/logger.js");
-const contactStore = require("../../models/contact-store.js");
+const userStore = require("../../models/user-store.js");
 
 const contact = {
   async index(request, response) {
-    let soccer = [...await contactStore.getContactsByPositionGroup("fCommittee"), ...await contactStore.getContactsByPositionGroup("fAbtLeading")];
-    let breitensport = [...await contactStore.getContactsByPositionGroup("bCommittee"), ...await contactStore.getContactsByPositionGroup("bAbtLeading")];
-    let stockschützen = [...await contactStore.getContactsByPositionGroup("sCommittee"), ...await contactStore.getContactsByPositionGroup("sAbtLeading")];
-    let tennis = [...await contactStore.getContactsByPositionGroup("tCommittee"), ...await contactStore.getContactsByPositionGroup("tAbtLeading")];
+    let soccer = [...await userStore.getContactsByPositionGroup("fCommittee"), ...await userStore.getContactsByPositionGroup("fAbtLeading")];
+    let breitensport = [...await userStore.getContactsByPositionGroup("bCommittee"), ...await userStore.getContactsByPositionGroup("bAbtLeading")];
+    let stockschützen = [...await userStore.getContactsByPositionGroup("sCommittee"), ...await userStore.getContactsByPositionGroup("sAbtLeading")];
+    let tennis = [...await userStore.getContactsByPositionGroup("tCommittee"), ...await userStore.getContactsByPositionGroup("tAbtLeading")];
 
     const weights = {
       "1. Abteilungsleiter" : 1,

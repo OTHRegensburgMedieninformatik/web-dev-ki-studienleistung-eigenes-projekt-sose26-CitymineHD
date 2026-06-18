@@ -7,8 +7,6 @@ const userStore = require("../models/user-store.js");
 // - userStore for handling all database interactions regarding users
 
 const home = {
-
-    // Index is in this case also the loading function for the user information, apply status
     async index(request, response) {
         logger.info("profile-edit rendering");
         const user = request.session.userId;
@@ -36,13 +34,7 @@ const home = {
         response.render("profile-edit", viewData);
     },
 
-    async editMember(request, response) {
-        const userId = request.params.id;
-        const newStatus = request.body.status;
-        await userStore.updateUserStatus(userId, newStatus);
-        response.redirect("/profile");
-    },
-
+    // Edit member Details -> For users and admins, users can edit their own personal information
     async update(request, response) {
         const userId = request.params.id;
         const updatedData = {
@@ -60,6 +52,12 @@ const home = {
         response.redirect("/profile");
     },
 
+    // Members are allowed to change their password
+    // It is nessary to enter the current password and the new password twice for confirmation
+    // After changing the password, the user will be logged out and needs to log in again with the new password
+    // Error types: 
+    // -> Response status 400, Render an error message in the frontend, that the password confirmation failed
+    // -> Rsponse status 500, Render an error message in the frontend, that changing the password failed (Database error)
     async changePassword(request, response) {
 
         const userId = request.params.id;
@@ -91,6 +89,7 @@ const home = {
         }
     },
 
+    // User can upload a profile image, which will be displayed in the profile and the header if the user is logged in
     async uploadProfileImage(request, response) {
         logger.info("Uploading profile image");
 

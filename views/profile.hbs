@@ -337,17 +337,35 @@
       try {
         const response = await fetch(url, {
           method: 'POST',
-          body: formData
+          body: fromData
         });
       } catch (e) {
           console.log('Saving failed: ', e);
       }
       destroyEditor();
 
-      window.location.assign('/profile');s
+      window.location.assign('/profile');
     });
   }
   
+  async function deleteUserPosition(user_id, position, position_group) {
+    const url = "/profile/deletePosition/" + user_id;
+
+    const formData = new FormData();
+    formData.append('position', position);
+    formData.append('positionGroup', position_group);
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Object.fromEntries(formData.entries()))
+    });
+
+    window.location.assign('/profile');
+  }
+
   async function openMemberDetails(user_id) {
     const memberModal = document.getElementById('modal' + user_id);
     const positionTableContainer = document.getElementById('positionTable' + user_id);
@@ -368,12 +386,8 @@
                 positionTableContent = positionTableContent + `
                                 <tr>    
                                     <td style="text-align: center;">
-                                        <form action="/profile/deletePosition/${position.id}" method="POST">
-                                            <p id="position">${position.position} - <strong>${position.position_group}</strong>
-                                            <input type="hidden" name="position" id="position" value="${position.position}">
-                                            <input type="hidden" name="positionGroup" id="positionGroup" value="${position.position_group}">
-                                            <button type="submit" class="btn btn-psc-blue"><i class="bi bi-trash"></i></button>
-                                        </form>
+                                        <p id="position">${position.position} - <strong>${position.position_group}</strong>
+                                        <button type="submit" onclick="deleteUserPosition('${user_id}', '${position.position}', '${position.position_group}')" class="btn btn-psc-blue"><i class="bi bi-trash"></i></button>
                                     </td>
                                 </tr>\n`;
             });
