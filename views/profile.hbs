@@ -241,19 +241,33 @@
       data: data,
       
       tools: {
+        anyTuneName: {
+            class: AlignmentBlockTune,
+            config:{
+                default: "right",
+                blocks: {
+                header: 'center',
+                paragraph: 'left',
+                list: 'right'
+                }
+            },
+        },
+        underline: Underline,
         color: {
           class: window.ColorPicker.default,
         },
         paragraph: {
           class: Paragraph,
-          inlineToolbar: ['bold', 'italic', 'color'],
+          inlineToolbar: true,
+          tunes: ['anyTuneName'],
           config: {
             placeholder: 'Text eingeben...',
           }
         },
         header: {
           class: Header,
-          inlineToolbar: ['bold', 'italic', 'color'],
+          inlineToolbar: true,
+          tunes: ['anyTuneName'],
           config: {
             placeholder: 'Überschrift eingeben...',
             levels: [2, 3, 4],
@@ -262,18 +276,32 @@
         },
         checklist: {
           class: Checklist,
-          inlineToolbar: ['bold', 'italic', 'color'],
+          inlineToolbar: true,
           config: {
             placeholder: 'Aufgabe eingeben...'
           }
         },
         list: {
           class: List,
-          inlineToolbar: ['bold', 'italic', 'color'],
+          inlineToolbar: true,
           config: {
             placeholder: 'Listelement eingeben...',
             defaultStyle: 'unordered'
           }
+        },
+        embed: {
+            class: Embed,
+            inlineToolbar: true,
+            toolbox: {
+                title: 'Video / Embed',
+                icon: '<svg width="17" height="15" viewBox="0 0 20 20"><path d="M17 4H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-9 8V8l5 2-5 2z"/></svg>'
+            },
+            config: {
+                services: {
+                    embedUrl: 'https://www.youtube-nocookie.com/embed/<%= remote_id %>',
+                    youtube: true,
+                }
+            }
         },
       },
     });

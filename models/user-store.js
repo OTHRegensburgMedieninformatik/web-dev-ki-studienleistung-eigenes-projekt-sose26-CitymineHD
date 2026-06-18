@@ -240,9 +240,9 @@ const userStore = {
         }
     },
 
-    async addUserPosition(userId, positions, position_group, img) {
-        const query = 'INSERT INTO project.personal (id, position, position_group, src_img) VALUES ($1, $2, $3, $4)';
-        const values = [userId, positions, position_group, img];
+    async addUserPosition(userId, positions, position_group) {
+        const query = 'INSERT INTO project.personal (id, position, position_group) VALUES ($1, $2, $3)';
+        const values = [userId, positions, position_group];
 
         try {
             await dataStoreClient.query(query, values);

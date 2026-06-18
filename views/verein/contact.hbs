@@ -8,52 +8,52 @@
     <div class="feature-container-centered">
         {{#each breitensport}}
             <div class="feature-item-centered">
-                <button type="button" class="profile-circle-img-link" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#modal{{@index}}">
+                <button type="button" class="profile-circle-img-link" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#modal{{id}}">
                      <div class="circle-centered", style="background-image: url({{src_img}});"></div>
                 </button>
                 <h5>{{firstname}} {{lastname}}</h5>
                 <p>{{position}}</p>
             </div>
-            {{> pop_up_contact modalId=@index}}
+            {{> pop_up_contact modalId=id}}
         {{/each}}
     </div>
     <h1 class="centered_text">Fußball</h1>
     <div class="feature-container-centered">
         {{#each soccer}}
             <div class="feature-item-centered">
-                <button type="button" class="profile-circle-img-link" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#modal{{@index}}">
+                <button type="button" class="profile-circle-img-link" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#modal{{id}}">
                      <div class="circle-centered", style="background-image: url({{src_img}});"></div>
                 </button>
                 <h5>{{firstname}} {{lastname}}</h5>
                 <p>{{position}}</p>
             </div>
-            {{> pop_up_contact modalId=@index}}
+            {{> pop_up_contact modalId=id}}
         {{/each}}
     </div>
     <h1 class="centered_text">Stockschützen</h1>
     <div class="feature-container-centered">
         {{#each stockschützen}}
             <div class="feature-item-centered">
-                <button type="button" class="profile-circle-img-link" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#modal{{@index}}">
+                <button type="button" class="profile-circle-img-link" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#modal{{id}}">
                      <div class="circle-centered", style="background-image: url({{src_img}});"></div>
                 </button>
                 <h5>{{firstname}} {{lastname}}</h5>
                 <p>{{position}}</p>
             </div>
-            {{> pop_up_contact modalId=@index}}
+            {{> pop_up_contact modalId=id}}
         {{/each}}
     </div>
     <h1 class="centered_text">Tennis</h1>
     <div class="feature-container-centered">
         {{#each tennis}}
             <div class="feature-item-centered">
-                <button type="button" class="profile-circle-img-link" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#modal{{@index}}">
+                <button type="button" class="profile-circle-img-link" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#modal{{id}}">
                      <div class="circle-centered", style="background-image: url({{src_img}});"></div>
                 </button>
                 <h5>{{firstname}} {{lastname}}</h5>
                 <p>{{position}}</p>
             </div>
-            {{> pop_up_contact modalId=@index}}
+            {{> pop_up_contact modalId=id}}
         {{/each}}
     </div>
 </body>

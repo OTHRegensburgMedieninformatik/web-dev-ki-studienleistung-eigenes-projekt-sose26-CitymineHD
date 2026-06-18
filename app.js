@@ -2,6 +2,8 @@ const express = require("express");
 const logger = require("./utils/logger");
 const handlebars = require("express-handlebars");
 const session = require("express-session");
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
 
 const dotenv = require("dotenv");
 dotenv.config();

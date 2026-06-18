@@ -1,4 +1,11 @@
 {
+  "name": "Peisinger SC e.V. Website - Web Technology Final Project",
+  "description": "This is the official website for the Peisinger SC e.V., developed as a final project for the Web Technology course at the OTH Regensburg.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js" 
+  },
+  "author": "Lucas Pfeffer",
   "dependencies": {
     "dotenv": "^17.4.2",
     "editorjs-parser": "^1.5.3",
@@ -7,6 +14,8 @@
     "express-session": "^1.19.0",
     "multer": "^2.1.1",
     "pg": "^8.20.0",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1",
     "winston": "^3.19.0"
   }
 }

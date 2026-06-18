@@ -39,7 +39,7 @@ router.get("/profile", auth.protectedUser, profil.index);
 router.post("/profile/editStatus/:id", auth.protectedAdmin, profil.editMemberStatus);
 router.post("/profile/editPosition/:id", auth.protectedAdmin, profil.editMemberPosition);
 router.get("/profile/edit/", auth.protectedUser, profil_edit.index);
-router.post("/profile/edit/:id", auth.protectedAdmin, profil_edit.update);
+router.post("/profile/edit/:id", auth.protectedUser, profil_edit.update);
 router.get("/profile/memberDetails/:user_id", auth.protectedAdmin, profil.memberDetails);
 router.post("/profile/editPassword/:id", auth.protectedUser, profil_edit.changePassword);
 router.post("/profile/deletePosition/:id", auth.protectedAdmin, profil.deletePosition);

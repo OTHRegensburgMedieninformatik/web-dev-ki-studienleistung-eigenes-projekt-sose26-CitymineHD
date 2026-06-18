@@ -9,9 +9,11 @@ const contact = {
     let tennis = [...await contactStore.getContactsByPositionGroup("tCommittee"), ...await contactStore.getContactsByPositionGroup("tAbtLeading")];
 
     const weights = {
-      "Abteilungsleiter" : 1,
-      "Jugendleiter" : 2,
-      "Ausschuss" : 3,
+      "1. Abteilungsleiter" : 1,
+      "2. Abteilungsleiter" : 2,
+      "1. Jugendleiter" : 3,
+      "2. Jugendleiter" : 4,
+      "Ausschuss" : 5,
     };
 
     soccer.sort((a, b) => {

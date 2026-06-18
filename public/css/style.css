@@ -62,32 +62,30 @@ body {
   padding: 50px;
 }
 
-/* 2. Den Inhalt innerhalb jeder Spalte zentrieren */
 .feature-item-centered {
   display: flex;
-  flex-direction: column;    /* Stapelt Kreis, H2 und P untereinander */
-  align-items: center;       /* Zentriert alles horizontal innerhalb der Spalte */
-  text-align: center;        /* Zentriert den Text selbst */
-  max-width: 300px;          /* Verhindert, dass der Text zu breit läuft */
+  flex-direction: column;   
+  align-items: center;      
+  text-align: center;       
+  max-width: 300px;          
 }
 
-/* 3. Styling für den schwarzen Kreis */
 .circle-centered {
   width: 140px;
   height: 140px;
   background-color: rgba(0, 0, 0, 0);
-  border-radius: 50%;        /* Macht das Quadrat zum Kreis */
-  margin-bottom: 20px;       /* Abstand zur Überschrift */
+  border-radius: 50%;        
+  margin-bottom: 20px;       
 
-  background-image: url(); /* Hier den Bildpfad eintragen */
-  background-size: cover;    /* Das Bild füllt den Kreis komplett aus */
-  background-position: center; /* Das Bild wird mittig zentriert */
-  background-repeat: no-repeat; /* Bild wird nicht gekachelt */
+  background-image: url(); 
+  background-size: cover;  
+  background-position: center; 
+  background-repeat: no-repeat; 
 }
 
 .centered_text {
     text-align: center;
-    gap: 10px;                 /* Abstand zwischen den Spalten */
+    gap: 10px;                 
     padding: 10px;
 }
 
@@ -98,13 +96,13 @@ body {
 }
 
 .profile-circle-img {
-    width: 140px;           /* Feste Breite */
-    height: 140px;          /* Gleiche Höhe für ein perfektes Quadrat */
-    border-radius: 50%;      /* Macht das Quadrat zum Kreis */
-    object-fit: cover;      /* WICHTIG: Verhindert, dass das Bild verzerrt wird */
-    object-position: center; /* Zentriert den Bildinhalt */
-    border: 3px solid #0056b3; /* Optional: Ein blauer Rahmen passend zum PSC */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Macht es etwas "schöner" */
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 3px solid #0056b3;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .profile-circle-img-link {
@@ -113,19 +111,18 @@ body {
 }
 
 .profile-circle-img-nav {
-    width: 50px;           /* Feste Breite */
-    height: 50px;          /* Gleiche Höhe für ein perfektes Quadrat */
-    border-radius: 50%;      /* Macht das Quadrat zum Kreis */
-    object-fit: cover;      /* WICHTIG: Verhindert, dass das Bild verzerrt wird */
-    object-position: center; /* Zentriert den Bildinhalt */
-    border: 3px solid #0056b3; /* Optional: Ein blauer Rahmen passend zum PSC */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Macht es etwas "schöner" */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 3px solid #0056b3;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     margin-right: 20px;
 
-    background-image: url(); /* Hier den Bildpfad eintragen */
-    background-size: cover;    /* Das Bild füllt den Kreis komplett aus */
-    background-position: center; /* Das Bild wird mittig zentriert */
-    background-repeat: no-repeat; /* Bild wird nicht gekachelt */
+    background-image: url();
+    background-size: cover;
+    background-position: center;
 }
 
 .yellow-dot {
@@ -184,4 +181,9 @@ body {
 
 .hidden {
     display: none !important;
+}
+
+.cdx-embed-tool__content {
+    width: 100%;
+    aspect-ratio: 16 / 9;
 }

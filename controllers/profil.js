@@ -47,7 +47,7 @@ const home = {
         const positionGroup = request.body.positionGroup;
 
         if (position && positionGroup) {
-            await userStore.addUserPosition(userId, position, positionGroup, '/psc_logo.png');
+            await userStore.addUserPosition(userId, position, positionGroup);
         }
 
         response.redirect("/profile");
