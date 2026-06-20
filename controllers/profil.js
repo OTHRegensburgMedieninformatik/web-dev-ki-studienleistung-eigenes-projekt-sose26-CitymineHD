@@ -1,6 +1,7 @@
 const logger = require("../utils/logger.js");
 const userStore = require("../models/user-store.js");
 const newsStore = require("../models/news-store.js");
+const positionTagParser = require("../models/position_tag_parser.js");
 
 // === Controller for Profile page ===
 // Page with user profile information, application status and user positions
@@ -12,7 +13,7 @@ const home = {
         logger.info("profile rendering");
         const user = request.session.userId;
         const userProfile = await userStore.getUserById(user);
-        const userPositions = await userStore.getUserPosition(user);
+        let userPositions = await userStore.getUserPosition(user);
         const applyStatus = await userStore.getUserApplyStatus(user);
         const applys = await userStore.getAllUserApplys();
         const allAllMembers = await userStore.getAllUsers();
@@ -31,7 +32,7 @@ const home = {
         const viewData = {
         title: "PSC • Profil",
         userProfile: userProfile,
-        userPositions: userPositions,
+        userPositions: positionTagParser.positionTagParser(userPositions),
         applyStatus: applyStatus.status == 0 ? "<span class=\"yellow-dot\"></span> In Prüfung" : applyStatus.status == 1 ? "<span class=\"green-dot\"></span> Mitglied" : applyStatus.status == 2 ? "<span class=\"red-dot\"></span> Abgelehnt" : "<span class=\"grey-dot\"></span> Unbekannt",
         applys: applys,
         allMembers: allAllMembers,
@@ -71,7 +72,9 @@ const home = {
         const userId = request.params.user_id;
 
         const userDetails = await userStore.getUserById(userId);
-        const userPositions = await userStore.getUserPosition(userId);
+        let userPositions = await userStore.getUserPosition(userId);
+
+        userPositions = positionTagParser.positionTagParser(userPositions);
 
         response.json({userDetails, userPositions})
     },

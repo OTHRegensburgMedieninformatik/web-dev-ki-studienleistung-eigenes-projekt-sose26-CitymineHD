@@ -103,7 +103,7 @@
                                 {{/if}}
                                 {{#each userPositions}}
                                 <tr>
-                                    <td style="text-align: center;"><strong>{{position_group}}</strong> - {{position}}</td>
+                                    <td style="text-align: center;"><strong>{{position_group_display}}</strong> - {{position}}</td>
                                 </tr>
                                 {{/each}}
                             </tbody>
@@ -386,7 +386,7 @@
                 positionTableContent = positionTableContent + `
                                 <tr>    
                                     <td style="text-align: center;">
-                                        <p id="position">${position.position} - <strong>${position.position_group}</strong>
+                                        <p id="position">${position.position} - <strong>${position.position_group_display}</strong>
                                         <button type="submit" onclick="deleteUserPosition('${user_id}', '${position.position}', '${position.position_group}')" class="btn btn-psc-blue"><i class="bi bi-trash"></i></button>
                                     </td>
                                 </tr>\n`;

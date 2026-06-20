@@ -1,0 +1,18 @@
+{
+    "leading": "Vorstandschaft",
+    "committee": "Ausschuss",
+    "bAbtLeading": "Abteilungsleitung Breitensport",
+    "bCommittee": "Ausschuss-Breitensport",
+    "bTrainer": "Trainer Breitensport",
+    "fAbtLeading": "Abteilungsleitung Fußball",
+    "fCommittee": "Ausschuss-Fußball",
+    "fTrainerE": "Trainer E-Jugend",
+    "fTrainerF": "Trainer F-Jugend",
+    "fTrainerG": "Trainer G-Jugend",
+    "tAbtLeading": "Abteilungsleitung Tennis",
+    "sCommittee": "Ausschuss Stockschützen",
+    "sAbtLeading": "Abteilungsleitung Stockschützen",
+    "tCommittee": "Ausschuss Tennis",
+    "tTrainerH": "Trainer Herren Tennis",
+    "tTrainerK": "Trainer Kinder Tennis"
+}
