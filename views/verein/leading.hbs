@@ -7,10 +7,13 @@
     <div class="feature-container-centered gab-4">
        {{#each leading}}
             <div class="card centered_text border-0" style="display: flex; flex-direction: column; flex-grow: 1; align-items: center; text-align: center;">
-                <div class="circle-centered", style="background-image: url({{src_img}});"></div>
+                <button type="button" class="profile-circle-img-link" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#modal{{id}}">
+                     <div class="circle-centered", style="background-image: url({{src_img}});"></div>
+                </button>
                 <h2>{{firstname}} {{lastname}}</h2>
                 <p>{{position}}</p>
             </div>
+            {{> pop_up_contact modalId=id}}
         {{/each}}
     </div>
 </body>
