@@ -216,7 +216,6 @@ A User can Login to the webite with their email and password. The Login Form is 
 ## 🐛 Known Issues
 
 - In the registration form, the department selection does not appear in the database. Its always saved as NULL.
-- Pop Up for leadings are missing
 
 ## 📝 Academic Context and License
 

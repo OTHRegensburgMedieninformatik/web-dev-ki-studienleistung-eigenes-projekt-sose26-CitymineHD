@@ -51,49 +51,49 @@
                             <h4 class="p-2 mb-4 bg-psc-yellow">Persönliche Daten</h4>
                             <div class="col">                
                                 <label for="firstName">Vorname:</label>
-                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Vorname">
+                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Vorname" required>
                             </div>
                             <div class="col">
                                 <label for="lastName">Nachname:</label>
-                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Nachname">
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Nachname" required>
                             </div>
                             <div class="col">
                                 <label for="birthDate">Geburtstag:</label>
-                                <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="Geburtstag">
+                                <input type="date" class="form-control" id="birthDate" name="birthDate" placeholder="Geburtstag" required>
                             </div>
                         </div>
                         <div class="row mt-5">
                             <h4 class="p-2 mb-4 bg-psc-yellow">Adresse</h4>
                             <div class="col">
                                 <label for="address">Anschrift:</label>
-                                <input type="text" class="form-control" id="address" name="address" placeholder="Anschrift">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Anschrift" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">                
                                 <label for="postCode">Postleitzahl:</label>
-                                <input type="text" class="form-control" id="postCode" name="postCode" placeholder="Postleitzahl">
+                                <input type="text" class="form-control" id="postCode" name="postCode" placeholder="Postleitzahl" required>
                             </div>
                             <div class="col">
                                 <label for="city">Wohnort:</label>
-                                <input type="text" class="form-control" id="city" name="city" placeholder="Wohnort">
+                                <input type="text" class="form-control" id="city" name="city" placeholder="Wohnort" required>
                             </div>
                         </div>
                         <div class="row mt-5">
                             <h4 class="p-2 mb-4 bg-psc-yellow">Kontaktinformationen</h4>
                             <div class="col">
                                 <label for="phone">Telefon:</label>
-                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Telefon">
+                                <input type="tel" class="form-control" id="phone" name="phone" pattern="\+[0-9]{2}[0-9\s-]+" placeholder="Telefon" required>
                             </div>
                             <div class="col">
                                 <label for="mobile">Handy:</label>
-                                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Handy">
+                                <input type="tel" class="form-control" id="mobile" name="mobile" pattern="[0-9\s+\-/]+" placeholder="Handy" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <label for="email">E-Mail:</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail" required>
                             </div>
                         </div>
                         <div class="row mt-5">
@@ -128,33 +128,33 @@
                                 <p>Kontoinhaber:</p>
                             </div>
                             <div class="col">
-                                <input type="input" class="form-control" id="accountOwnerFirstName" name="accountOwnerFirstName" placeholder="Nachname">
+                                <input type="input" class="form-control" id="accountOwnerFirstName" name="accountOwnerFirstName" placeholder="Nachname" required>
                             </div>
                             <div class="col">
-                                <input type="input" class="form-control" id="accountOwnerLastName" name="accountOwnerLastName" placeholder="Vorname">
+                                <input type="input" class="form-control" id="accountOwnerLastName" name="accountOwnerLastName" placeholder="Vorname" required>
                             </div>
                             <div class="col">
-                                <input type="input" class="form-control" id="accountOwnerAddress" name="accountOwnerAddress" placeholder="Adresse">
+                                <input type="input" class="form-control" id="accountOwnerAddress" name="accountOwnerAddress" placeholder="Adresse" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <label for="accountIBAN">IBAN</label>
-                                <input type="input" class="form-control" id="accountIBAN" name="accountIBAN" placeholder="IBAN">
+                                <input type="input" class="form-control" id="accountIBAN" name="accountIBAN" pattern="[A-Z]{2}[0-9]{18}" placeholder="IBAN" required>
                             </div>
                             <div class="col">
                                 <label for="accountBIC">BIC</label>
-                                <input type="input" class="form-control" id="accountBIC" name="accountBIC" placeholder="BIC">
+                                <input type="input" class="form-control" id="accountBIC" name="accountBIC" pattern="[A-Z]{8,11}" placeholder="BIC" required>
                             </div>
                             <div class="col">
                                 <label for="accountBank">Kreditinstitut</label>
-                                <input type="input" class="form-control" id="accountBank" name="accountBank" placeholder="Kreditinstitut">
+                                <input type="input" class="form-control" id="accountBank" name="accountBank" placeholder="Kreditinstitut" required>
                             </div>
                         </div>
                         <div class="row mt-5 mb-5">
                             <h4 class="p-2 mb-4 bg-psc-yellow">Datenschutz und Newsletter</h4>
                             <label for="privacy1">Ich habe die Datenschutzerklärung zur Kenntnis genommen</label>
-                            <input type="checkbox" id="privacy1" name="privacy1">
+                            <input type="checkbox" id="privacy1" name="privacy1" required>
                             <label for="privacy2">Ich stimme zu den Newsletter zu empfangen</label>
                             <input type="checkbox" id="privacy2" name="privacy2">
                         </div>

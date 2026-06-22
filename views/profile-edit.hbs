@@ -29,19 +29,19 @@
                                 <table style="width: 100%; table-layout: fixed;">
                                     <tr>
                                         <td style="width: 120px; vertical-align: top;"><strong>Vorname:</strong></td>
-                                        <td><input type="text" id="firstName" name="firstName" value="{{userProfile.firstName}}"></td>
+                                        <td><input type="text" id="firstName" name="firstName" value="{{userProfile.firstName}}" required></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Geburtstag:</strong></td>
-                                        <td><input type="text" id="birthday" name="birthday" value="{{userProfile.birthday}}"></td>
+                                        <td><input type="text" id="birthday" name="birthday" value="{{userProfile.birthday}}" required></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Postleitzahl:</strong></td>
-                                        <td><input type="text" id="postcode" name="postcode" value="{{userProfile.postcode}}"></td>
+                                        <td><input type="text" id="postcode" name="postcode" value="{{userProfile.postcode}}" required></td>
                                     </tr>
                                     <tr>
                                         <td><strong>E-Mail:</strong></td>
-                                        <td><input type="email" id="mail" name="mail" value="{{userProfile.mail}}"></td>
+                                        <td><input type="email" id="mail" name="mail" value="{{userProfile.mail}}" required></td>
                                     </tr>
                                 </table>
                             </div>
@@ -49,23 +49,23 @@
                                 <table style="width: 100%; table-layout: fixed;">
                                     <tr>
                                         <td style="width: 120px;"><strong>Nachname:</strong></td>
-                                        <td><input type="text" id="lastName" name="lastName" value="{{userProfile.lastName}}"></td>
+                                        <td><input type="text" id="lastName" name="lastName" value="{{userProfile.lastName}}" required></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Adresse:</strong></td>
-                                        <td><input type="text" id="address" name="address" value="{{userProfile.address}}"></td>
+                                        <td><input type="text" id="address" name="address" value="{{userProfile.address}}" required></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Ort:</strong></td>
-                                        <td><input type="text" id="city" name="city" value="{{userProfile.city}}"></td>
+                                        <td><input type="text" id="city" name="city" value="{{userProfile.city}}" required></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Telefon:</strong></td>
-                                        <td><input type="text" id="phone" name="phone" value="{{userProfile.phone}}"></td>
+                                        <td><input type="tel" id="phone" name="phone" pattern="[0-9\s+\-/]+" value="{{userProfile.phone}}" required></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Handy:</strong></td>
-                                        <td><input type="text" id="handy" name="handy" value="{{userProfile.handy}}"></td>
+                                        <td><input type="tel" id="handy" name="handy" pattern="[0-9\s+\-/]+" value="{{userProfile.handy}}" required></td>
                                     </tr>
                                 </table>
                             </div>
@@ -75,13 +75,13 @@
                     <h5 style="margin-top: 40px; margin-bottom: 40px;">Passwort ändern</h5>
                     <form id="passwordForm" data-user-id={{userProfile.id}}>
                         <div class="col" style="margin: 20px; margin-top:40px;">
-                            <input type="password" id="currentPassword" name="currentPassword" placeholder="Aktuelles Passwort">
+                            <input type="password" id="currentPassword" name="currentPassword" placeholder="Aktuelles Passwort" required>
                         </div>
                         <div class="col" style="margin: 20px;">
-                            <input type="password" id="newPassword" name="newPassword" placeholder="Neues Passwort">
+                            <input type="password" id="newPassword" name="newPassword" placeholder="Neues Passwort" required>
                         </div>
                         <div class="col" style="margin: 20px;">
-                            <input type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Neues Passwort bestätigen">
+                            <input type="password" id="confirmNewPassword" name="confirmNewPassword" placeholder="Neues Passwort bestätigen" required>
                         </div>
                         <button type="submit" class="btn btn-psc-blue">Passwort ändern</button>
                         <div id="passwordError" role="alert" style="margin: 20px;"></div>
