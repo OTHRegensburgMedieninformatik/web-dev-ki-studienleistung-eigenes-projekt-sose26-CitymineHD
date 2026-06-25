@@ -18,9 +18,8 @@ const leading = {
       const posA = weights[a.position] || 99;
       const posB = weights[b.position] || 99;
       return posA - posB;
-    })
+    });
 
-    console.log(leadings);
     const viewData = {
       title: "PSC • Vorstandschaft",
       leading: leadings,
