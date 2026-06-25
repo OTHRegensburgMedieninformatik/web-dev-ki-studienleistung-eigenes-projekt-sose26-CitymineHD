@@ -37,7 +37,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Postleitzahl:</strong></td>
-                                        <td><input type="text" id="postcode" name="postcode" value="{{userProfile.postcode}}" required></td>
+                                        <td><input type="text" id="postcode" name="postcode" value="{{userProfile.postcode}}" pattern="\d{5}" required></td>
                                     </tr>
                                     <tr>
                                         <td><strong>E-Mail:</strong></td>
@@ -61,11 +61,11 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Telefon:</strong></td>
-                                        <td><input type="tel" id="phone" name="phone" pattern="[0-9\s+\-/]+" value="{{userProfile.phone}}" required></td>
+                                        <td><input type="tel" id="phone" name="phone" pattern="\+[0-9]{2}\s[0-9]+" value="{{userProfile.phone}}" required></td>
                                     </tr>
                                     <tr>
                                         <td><strong>Handy:</strong></td>
-                                        <td><input type="tel" id="handy" name="handy" pattern="[0-9\s+\-/]+" value="{{userProfile.handy}}" required></td>
+                                        <td><input type="tel" id="handy" name="handy" pattern="\+[0-9]{2}\s[0-9]+" value="{{userProfile.handy}}" required></td>
                                     </tr>
                                 </table>
                             </div>

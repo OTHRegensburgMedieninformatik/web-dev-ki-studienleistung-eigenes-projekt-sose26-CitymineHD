@@ -7,17 +7,17 @@
 }
 
 html, body {
-    height: 100%; /*Damit Footer immer am unteren Rand bleibt, auch wenn der Inhalt nicht die volle Höhe einnimmt*/
+    height: 100%;
     margin: 0;
 }
 
 body {
-    display: flex; /*Damit Footer immer am unteren Rand bleibt, auch wenn der Inhalt nicht die volle Höhe einnimmt*/
+    display: flex;
     flex-direction: column;
 }
 
 .content {
-    flex: 1 0 auto; /*Damit Footer immer am unteren Rand bleibt, auch wenn der Inhalt nicht die volle Höhe einnimmt*/
+    flex: 1 0 auto;
 }
 
 .btn-psc-yellow {
@@ -56,9 +56,9 @@ body {
 
 .feature-container-centered {
   display: flex;
-  flex-wrap: wrap;           /* Erlaubt Zeilenumbruch, falls der Platz nicht reicht */
-  justify-content: center;    /* Zentriert die Spalten horizontal */
-  gap: 40px;                 /* Abstand zwischen den Spalten */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
   padding: 50px;
 }
 
@@ -129,53 +129,53 @@ body {
     width: 10px;
     height: 10px;
     background-color: yellow;
-    border-radius: 50%;        /* Macht es rund */
-    display: inline-block;     /* Wichtig, damit Höhe/Breite wirken */
-    margin-right: 5px;         /* Abstand zum Text "In Prüfung" */
-    vertical-align: middle;    /* Zentriert den Punkt auf Texthöhe */
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 .green-dot {
     width: 10px;
     height: 10px;
     background-color: green;
-    border-radius: 50%;        /* Macht es rund */
-    display: inline-block;     /* Wichtig, damit Höhe/Breite wirken */
-    margin-right: 5px;         /* Abstand zum Text "In Prüfung" */
-    vertical-align: middle;    /* Zentriert den Punkt auf Texthöhe */
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 .red-dot {
     width: 10px;
     height: 10px;
     background-color: red;
-    border-radius: 50%;        /* Macht es rund */
-    display: inline-block;     /* Wichtig, damit Höhe/Breite wirken */
-    margin-right: 5px;         /* Abstand zum Text "In Prüfung" */
-    vertical-align: middle;    /* Zentriert den Punkt auf Texthöhe */
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 .grey-dot {
     width: 10px;
     height: 10px;
     background-color: grey;
-    border-radius: 50%;        /* Macht es rund */
-    display: inline-block;     /* Wichtig, damit Höhe/Breite wirken */
-    margin-right: 5px;         /* Abstand zum Text "In Prüfung" */
-    vertical-align: middle;    /* Zentriert den Punkt auf Texthöhe */
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 .training-info-box {
-    background-color: #f8f9fa; /* Hellgrauer Hintergrund */
+    background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 8px;
     padding: 20px;
     max-width: 600px;
-    margin: 20px auto; /* Zentriert die Box */
+    margin: 20px auto;
 }
 
 .training-info-box h4 {
-    color: #1a3a1a; /* Dunkelgrün passend zum Fußball-Thema */
+    color: #1a3a1a;
     margin-bottom: 15px;
 }
 
