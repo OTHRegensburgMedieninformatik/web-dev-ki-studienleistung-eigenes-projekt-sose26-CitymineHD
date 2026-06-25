@@ -4,6 +4,13 @@
 
 This is the official website for the Peisinger SC e.V., developed as a final project for the Web Technology course at the OTH Regensburg.
 
+Test Accounts:
+| Username | Password | Role |
+| --- | --- | --- |
+| lucas.pfeffer@gmx.de | 93077 | Admin |
+| mars.mars@mars.de | 123456 | Member with Roles |
+| soeren.seidewind@gmail.com | 123456 | Member without Roles |
+
 ## ✨ Features
 
 - A lot of Information Pages about the club, its departments and contact information
@@ -37,6 +44,11 @@ cd web-dev-ki-studienleistung-eigenes-projekt-sose26-CitymineHD
 Just install the dependencies with npm:
 ```bash
 npm install
+```
+
+and by npm installation package error try
+```bash
+npm audit fix
 ```
 
 ## ⚙️ Configuration
